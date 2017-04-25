@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue Bootstrap Calendar Example</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+
+	<div class="page-header">
+		<h1>Vue Bootstrap Calendar</h1>
+		<p class="lead"></p>
+	</div>
+
+	<div id="app">
+		<Calendar
+			:first-day="1"
+		></Calendar>
+	</div>
+</div>
+<script src="dist/vbc.js"></script>
+<script>
+	var app = new Vue( {
+		el        : '#app',
+		i18n,
+		mounted() {
+			let loading = document.getElementById( "loading" );
+			if(loading != null){
+				loading.style.display = "none";
+			}
+		}
+	} );
+</script>
+</body>
+</html>
