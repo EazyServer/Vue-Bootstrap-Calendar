@@ -21,7 +21,7 @@
         props:{
             week: {
                 type: Array
-            }
+            },
         },
         created(){
             let me = this;

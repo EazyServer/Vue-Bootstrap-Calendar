@@ -1,10 +1,18 @@
 <template>
     <div class="row">
-        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="locale">{{ $t('generic.select_language')}}:</label>
+                <select class="form-control language-select" v-model="localeSelect" @change="setLocale" id="locale">
+                    <option value="ar">AR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+        </div>
         <div class="col-sm-4 header-center">
             <div class="btn-group">
                 <button @click.stop="goPrev" class="btn btn-outline btn-primary">&lArr; {{ $t('generic.previous')}}</button>
-                <button @click.stop="goToday" class="btn btn-outline btn-default today-button"> {{ $t('generic.today')}}</button>
+                <button @click.stop="goToday" class="btn btn-outline btn-default today-button">&dArr; {{ $t('generic.today')}}</button>
                 <button @click.stop="goNext" class="btn btn-outline btn-primary">{{ $t('generic.next')}} &rArr;</button>
             </div>
         </div>
@@ -18,9 +26,16 @@
     import {CHANGE_MONTH} from '../actions';
 
     export default {
+        data (){
+            return {
+                localeSelect:'en'
+            }
+        },
         props : {
             currentMonth : {},
-            locale       : {}
+            locale       : {
+                type: String
+            }
         },
         computed: {
             title () {
@@ -39,6 +54,9 @@
             },
             goToday () {
                 EventsBus.$emit(CHANGE_MONTH, moment());
+            },
+            setLocale () {
+                i18n.locale = this.localeSelect;
             }
         }
     }
@@ -56,5 +74,9 @@
         text-align: center;
         font-size: 1.5em;
         font-weight: bolder;
+    }
+    .language-select {
+        display: inline-block;
+        width: 50%;
     }
 </style>

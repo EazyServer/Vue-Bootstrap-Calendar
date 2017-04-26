@@ -5,35 +5,33 @@
         <div v-if="error" class="error"></div>
 
         <div class="panel panel-default">
-        <div class="panel-heading">{{$t('generic.calender')}}</div>
+            <div class="panel-heading"><h2>{{$t('generic.calender')}}</h2></div>
 
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- header pick month -->
-                    <CalendarHeader :current-month="currentMonth"
-                               :first-day="firstDay"
-                               :locale="locale">
-                    </CalendarHeader>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <CalendarHeader :current-month="currentMonth"
+                                   :first-day="firstDay"
+                                   :locale="appLocale">
+                        </CalendarHeader>
 
-                    <div class="full-calendar-body">
-                        <div class="weeks">
-                            <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | localeWeekDay(firstDay, locale) }}</strong>
-                        </div>
+                        <div class="full-calendar-body">
+                            <div class="weeks">
+                                <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
+                            </div>
 
-                        <div class="dates" ref="dates">
-                            <Week v-for="week in Weeks"
-                                  :locale="locale"
-                                  :firstDay="firstDay"
-                                  :key="week"
-                                  :week="week">
-                            </Week>
+                            <div class="dates" ref="dates">
+                                <Week v-for="week in Weeks"
+                                      :firstDay="firstDay"
+                                      :key="week"
+                                      :week="week">
+                                </Week>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 <script type="text/babel">
@@ -151,7 +149,7 @@
             getMonthViewStartDate (date, firstDay) {
                 firstDay = parseInt(firstDay);
 
-                let start = moment(date);
+                let start = moment(date).locale(this.appLocale);
                 let startOfMonth = moment(start.startOf('month'));
 
                 start.subtract(startOfMonth.day(), 'days');
@@ -166,7 +164,7 @@
             }
         },
         filters: {
-            localeWeekDay (weekday, firstDay, locale) {
+            weekDayName (weekday, firstDay, locale) {
                 firstDay = parseInt(firstDay);
                 const localMoment = moment().locale(locale);
                 return localMoment.localeData().weekdaysShort()[(weekday + firstDay) % 7];
