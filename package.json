@@ -1,9 +1,12 @@
 {
   "name": "vue-bootstrap-calendar",
-  "description": "Use the magical power of VueJS and beauty of Twitter Bootstraps to create a powerful Calendar App",
+  "description": "Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps to create a powerful Responsive Calendar App.",
   "version": "1.0.0",
-  "author": "yarob <yarob.al-taay@union.co.uk>",
-  "private": true,
+  "author": "yarob <eazyserver.net@gmail.com>",
+  "homepage": "https://github.com/EazyServer/Vue-Bootstrap-Calendar",
+  "bugs": {
+    "url" : "https://github.com/EazyServer/Vue-Bootstrap-Calendar/issues"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
@@ -25,5 +28,6 @@
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
-  }
+  },
+  "license" : "MIT"
 }
