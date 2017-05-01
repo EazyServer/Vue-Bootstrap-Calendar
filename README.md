@@ -23,26 +23,74 @@ OR you can include the compiled file found in "dist/vbc.js" directly into your p
     </div>
 
     <div id="app">
-        <Calendar :first-day="0"></Calendar>
+        <Calendar
+            :first-day="1"
+            :all-events="events"
+        ></Calendar>
     </div>
 </div>
 <script src="dist/vbc.js"></script>
 <script>
     var app = new Vue( {
-        el        : '#app',
-        i18n,
-        mounted() {
-            let loadingIndicator = document.getElementById( "loading" );
-            if(loadingIndicator != null){
-                loadingIndicator.style.display = "none";
-            }
-        }
-    } );
+    		el        : '#app',
+    		data: {
+    			events: []
+    		},
+    		i18n,
+    		mounted() {
+    			let loadingIndicator = document.getElementById( "loading" );
+    
+    			if(loadingIndicator != null){
+    				loadingIndicator.style.display = "none";
+    			}
+    
+    			this.events = [ // you can make ajax call here
+    				{
+    					id:1,
+    					title:'Event 1',
+    					color: 'panel-danger',
+    					date: new Date()
+    				},
+    				{
+    					id:2,
+    					title:'Event blaa on same day!',
+    					color: 'panel-default',
+    					date: new Date()
+    				},
+    				{
+    					id:3,
+    					title:'Event 2',
+    					color: 'panel-primary',
+    					date: new Date(new Date().setHours(new Date().getHours() + 2*24)) // add 2 days
+    				},
+    				{
+    					id:4,
+    					title:'Event 3',
+    					color: 'panel-success',
+    					date: new Date(new Date().setHours(new Date().getHours() + 5*24)) // add 5 days
+    				},
+    				{
+    					id:5,
+    					title:'Event 4',
+    					color: 'panel-warning',
+    					date: new Date(new Date().setHours(new Date().getHours() + 14*24)) // add 2 weeks
+    				},
+    				{
+    					id:6,
+    					title:'Event 5',
+    					color: 'panel-success',
+    					date: new Date(new Date().setHours(new Date().getHours() + 30*24)) // add 1 month
+    				},
+    
+    			];
+    		}
+    	} );
 </script>
 ```
 
 ## How to use vue-bootstrap-calendar #
-Simply include ```<Calendar :first-day="x"></Calendar>``` in your vue app. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
+Simply include ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your vue app. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
+Events array can passed on via ``all-events`` binding.
 
 
 ## Copyright and License

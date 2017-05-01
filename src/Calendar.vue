@@ -47,9 +47,11 @@
             }
         },
         props: {
-            locale: {
-                type: String,
-                default: 'en'
+            allEvents: {
+                type: Array,
+                default: function () {
+                    return [];
+                }
             },
             firstDay: {
                 type: Number | String,
@@ -104,39 +106,7 @@
                 return i18n.locale;
             },
             events: function () {
-                return [
-                    {
-                        title:'Event 1',
-                        color: 'panel-danger',
-                        date: moment()
-                    },
-                    {
-                        title:'Event blaa on same day!',
-                        color: 'panel-default',
-                        date: moment()
-                    },
-                    {
-                        title:'Event 2',
-                        color: 'panel-primary',
-                        date: moment().add(2, 'd')
-                    },
-                    {
-                        title:'Event 3',
-                        color: 'panel-success',
-                        date: moment().add(5, 'd')
-                    },
-                    {
-                        title:'Event 4',
-                        color: 'panel-warning',
-                        date: moment().add(2, 'w')
-                    },
-                    {
-                        title:'Event 5',
-                        color: 'panel-success',
-                        date: moment().add(1, 'M')
-                    },
-
-                ];
+                return this.allEvents;
             }
         },
         methods: {

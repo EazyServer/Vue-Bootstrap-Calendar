@@ -1,15 +1,16 @@
 <template>
     <div class="panel no-margin" :class="[event.color]" @click="showEventDetails">
-        <div class="panel-heading event-title" :class="{'clickable-event':clickableEvent}">{{event.title}}</div>
+        <div class="panel-heading event-title" :class="{'clickable-event':isClickableEvent}">{{event.title}}</div>
     </div>
 </template>
 
 <script>
     import {DAY_SELECTED} from '../actions';
+    import moment from 'moment';
     export default {
         data(){
             return {
-                clickableEvent:false
+                isClickableEvent:false
             }
         },
         props: {
@@ -18,19 +19,22 @@
             }
         },
         created(){
-            let me = this;
+            const me = this;
             EventsBus.$on(DAY_SELECTED, function (selectedDay) {
-                if(me.event.date.isSame(selectedDay.dayDate, 'day')){
-                    me.clickableEvent = true;
+
+                let eventDate = (me.event.date instanceof moment)? me.event.date: moment(me.event.date);
+
+                if(eventDate.isSame(selectedDay.dayDate, 'day')){
+                    me.isClickableEvent = true;
                 }
                 else {
-                    me.clickableEvent = false;
+                    me.isClickableEvent = false;
                 }
             })
         },
         methods: {
             showEventDetails() {
-                if(this.clickableEvent){
+                if(this.isClickableEvent){
                     alert(this.event.title+' is selected. Will leave the implementation to you too :)');
                 }
             }
