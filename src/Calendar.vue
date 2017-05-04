@@ -34,7 +34,7 @@
         </div>
     </div>
 </template>
-<script type="text/babel">
+<script>
     import moment from 'moment';
     import {CHANGE_MONTH} from './actions';
 
@@ -68,7 +68,7 @@
         },
         created () {
             let me = this;
-            EventsBus.$on(CHANGE_MONTH, function (payload) {
+            this.$root.$on(CHANGE_MONTH, function (payload) {
                 me.currentMonth = payload;
             });
         },

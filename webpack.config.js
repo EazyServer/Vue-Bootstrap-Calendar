@@ -1,12 +1,15 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+      'vbc-package': './src/main.js',
+      'vbc-browser':'./src/vbc-browser.js',
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'vbc.js'
+    filename: '[name].js'
   },
   module: {
     rules: [

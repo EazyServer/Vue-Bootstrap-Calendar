@@ -22,20 +22,31 @@
 	</div>
 
 	<div id="app">
-		<Calendar
+		<calendar
 			:first-day="1"
 			:all-events="events"
-		></Calendar>
+		></calendar>
 	</div>
 </div>
-<script src="dist/vbc.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
+<script src="dist/vbc-browser.js"></script>
 <script>
-	var app = new Vue( {
+
+    window.i18n = new VueI18n({
+        locale : 'en',
+        messages
+    });
+
+    var app = new Vue( {
 		el        : '#app',
 		data: {
 			events: []
 		},
 		i18n,
+        components: {
+            Calendar
+        },
 		mounted() {
 			let loadingIndicator = document.getElementById( "loading" );
 

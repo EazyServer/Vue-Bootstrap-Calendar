@@ -46,17 +46,22 @@
         methods : {
             goPrev () {
                 let payload = moment(this.currentMonth).subtract(1, 'months').startOf('month');
-                EventsBus.$emit(CHANGE_MONTH, payload);
+                this.$root.$emit(CHANGE_MONTH, payload);
             },
             goNext () {
                 let payload = moment(this.currentMonth).add(1, 'months').startOf('month');
-                EventsBus.$emit(CHANGE_MONTH, payload);
+                this.$root.$emit(CHANGE_MONTH, payload);
             },
             goToday () {
-                EventsBus.$emit(CHANGE_MONTH, moment());
+                this.$root.$emit(CHANGE_MONTH, moment());
             },
             setLocale () {
-                i18n.locale = this.localeSelect;
+                if(i18n) {
+                    i18n.locale = this.localeSelect;
+                }
+                else {
+                    console.warn('Please define global vue locale object named "i18n"!');
+                }
             }
         }
     }

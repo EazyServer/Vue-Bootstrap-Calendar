@@ -1,10 +1,10 @@
 <template>
     <div class="day-cell"
-         :class="{'today' : day.isToday, 'current-month' : day.isCurrentMonth, 'weekend': day.isWeekEnd, 'selected-day':showDayOptionsFlag}"
+         :class="{'today' : day.isToday, 'current-month' : day.isCurrentMonth, 'weekend': day.isWeekEnd, 'selected-day':isDaySelected}"
     @click="showDayOptions">
         <div class="row">
             <div class="col-sm-6">
-                <div v-show="showDayOptionsFlag">
+                <div v-show="isDaySelected">
                     <span class="label label-success" @click="showAddEventForm"> {{ $t('generic.add_event') }}</span>
                 </div>
             </div>
@@ -16,8 +16,8 @@
             <EventCard
                     :event="event"
                     :key="event.id"
-                    :date="day.date"
-                    :first-day="firstDay"
+                    :day-date="day.date"
+                    :is-day-selected="isDaySelected"
                     v-for="event in day.events">
             </EventCard>
         </div>
@@ -29,7 +29,7 @@
     export default {
         data () {
             return {
-                showDayOptionsFlag: false
+                isDaySelected: false
             }
         },
         components: {
@@ -39,37 +39,34 @@
             day: {
                 type: Object
             },
-            event: {
-                type: Object
-            },
             firstDay: {
                 type: String
             },
         },
         created(){
             let me = this;
-            EventsBus.$on(DAY_SELECTED, function (payload) {
+            this.$root.$on(DAY_SELECTED, function (payload) {
                 if(payload.dayDate != me.day.date) {
-                    me.showDayOptionsFlag = false;
+                    me.isDaySelected = false;
                 }
             });
-            EventsBus.$on(CHANGE_MONTH, function () {
-                me.showDayOptionsFlag = false;
+
+            this.$root.$on(CHANGE_MONTH, function () {
+                me.isDaySelected = false;
             });
-        },
-        computed: {
         },
         methods : {
             showDayOptions(){
+                let me = this;
                 let startOfToday = moment().startOf('day');
                 if(this.day.date.isAfter(startOfToday) || this.day.date.isSame(startOfToday)) {
-                    let me = this;
-                    me.showDayOptionsFlag = true;
-                    EventsBus.$emit(DAY_SELECTED, {dayDate:me.day.date});
+                    this.isDaySelected = true;
+                    this.$root.$emit(DAY_SELECTED, {dayDate:me.day.date});
                 }
             },
             showAddEventForm(){
-                alert('I will leave this to you to implement :)');
+                // TODO: Implement add event form
+                alert('Can you help implementing this?');
             }
         }
     }

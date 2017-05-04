@@ -9,6 +9,7 @@
 </template>
 <script>
     import {WEEK_SELECTED} from '../actions';
+
     export default {
         data () {
             return {
@@ -25,7 +26,7 @@
         },
         created(){
             let me = this;
-            EventsBus.$on(WEEK_SELECTED, function (payload) {
+            this.$root.$on(WEEK_SELECTED, function (payload) {
                 if(payload.weekDate != me.week[0].date) {
                     me.showWeekNumberFlag = false;
                 }
@@ -39,7 +40,7 @@
             showWeekNumber() {
                 let me = this;
                 me.showWeekNumberFlag = true;
-                EventsBus.$emit(WEEK_SELECTED, {weekDate:me.week[0].date});
+                this.$root.$emit(WEEK_SELECTED, {weekDate:me.week[0].date});
             }
         }
     }

@@ -4,24 +4,32 @@
 
 The calender only uses bootstrap ``CSS``, NO ``bootstrap.js`` or ``jquery.js`` is needed for this project. Its purely Vue2 implementation.
 
-Vue-Bootsrtap-Calendar is locale/language ready, but only English and Arabic is implemented for now. Maybe you can help?
+This package is locale/language ready, with only Arabic and English implemented for now. Can you help adding more languages?
 
-## How to get vue-bootstrap-calendar #
+## Install vue-bootstrap-calendar #
 
 You can install via npm
    
-       $ npm install -S vue-bootstrap-calendar
+    $ npm install -S vue-bootstrap-calendar
 
-OR you can include the compiled file found in "dist/vbc.js" directly into your project like so:
+
+* Please note, this package depends on [vue-i18n](https://github.com/kazupon/vue-i18n) to run the translation engine, and it will break with out it! 
+
+Then you can import ``Calendar`` from the package like so:
+```javascript
+import {Calendar} from 'vue-bootstrap-calendar';
+// the main Calender App found here
+
+
+import {messages} from 'vue-bootstrap-calendar';
+//to include Calendar locale(s) from this package, or you can use your own one!
+```
+
+You can also include the compiled file found in "dist/vbc-browser.js" directly into your project, see example below.
 
 ```html
 <div class="container">
-
-    <div class="page-header">
-        <h1>Vue Bootstrap Calendar</h1>
-        <p class="lead"></p>
-    </div>
-
+    ...
     <div id="app">
         <Calendar
             :first-day="1"
@@ -29,14 +37,24 @@ OR you can include the compiled file found in "dist/vbc.js" directly into your p
         ></Calendar>
     </div>
 </div>
-<script src="dist/vbc.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
+<script src="dist/vbc-browser.js"></script>
 <script>
-    var app = new Vue( {
+    window.i18n = new VueI18n({
+        locale : 'en',
+        messages
+    });
+
+    var app = new Vue({
     		el        : '#app',
     		data: {
     			events: []
     		},
     		i18n,
+    		components: {
+                Calendar
+            },
     		mounted() {
     			let loadingIndicator = document.getElementById( "loading" );
     
@@ -51,46 +69,17 @@ OR you can include the compiled file found in "dist/vbc.js" directly into your p
     					color: 'panel-danger',
     					date: new Date()
     				},
-    				{
-    					id:2,
-    					title:'Event blaa on same day!',
-    					color: 'panel-default',
-    					date: new Date()
-    				},
-    				{
-    					id:3,
-    					title:'Event 2',
-    					color: 'panel-primary',
-    					date: new Date(new Date().setHours(new Date().getHours() + 2*24)) // add 2 days
-    				},
-    				{
-    					id:4,
-    					title:'Event 3',
-    					color: 'panel-success',
-    					date: new Date(new Date().setHours(new Date().getHours() + 5*24)) // add 5 days
-    				},
-    				{
-    					id:5,
-    					title:'Event 4',
-    					color: 'panel-warning',
-    					date: new Date(new Date().setHours(new Date().getHours() + 14*24)) // add 2 weeks
-    				},
-    				{
-    					id:6,
-    					title:'Event 5',
-    					color: 'panel-success',
-    					date: new Date(new Date().setHours(new Date().getHours() + 30*24)) // add 1 month
-    				},
-    
+    				...
     			];
     		}
-    	} );
+    	});
 </script>
 ```
 
 ## How to use vue-bootstrap-calendar #
-Simply include ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your vue app. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
-Events array can passed on via ``all-events`` binding.
+
+Include ```Calendar``` in you Vue App ```components``` then use ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your code. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
+Events array can be passed on via ``all-events`` binding.
 
 
 ## Copyright and License
