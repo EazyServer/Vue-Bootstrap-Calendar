@@ -1,6 +1,6 @@
 <template>
-    <div class="panel no-margin" :class="[event.color]" @click="showEventDetails">
-        <div class="panel-heading event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
+    <div class="card no-margin" :class="[event.color]" @click="showEventDetails">
+        <div class="card-header event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
     </div>
 </template>
 

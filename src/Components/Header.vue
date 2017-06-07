@@ -6,14 +6,15 @@
                 <select class="form-control language-select" v-model="localeSelect" @change="setLocale" id="locale">
                     <option value="ar">AR</option>
                     <option value="en">EN</option>
+                    <option value="de">DE</option>
                 </select>
             </div>
         </div>
         <div class="col-sm-4 header-center">
             <div class="btn-group">
-                <button @click.stop="goPrev" class="btn btn-outline btn-primary">&lArr; {{ $t('generic.previous')}}</button>
-                <button @click.stop="goToday" class="btn btn-outline btn-default today-button">&dArr; {{ $t('generic.today')}}</button>
-                <button @click.stop="goNext" class="btn btn-outline btn-primary">{{ $t('generic.next')}} &rArr;</button>
+                <button @click.stop="goPrev" class="btn btn-primary">&lArr; {{ $t('generic.previous')}}</button>
+                <button @click.stop="goToday" class="btn btn-secondary today-button">&dArr; {{ $t('generic.today')}}</button>
+                <button @click.stop="goNext" class="btn btn-primary">{{ $t('generic.next')}} &rArr;</button>
             </div>
         </div>
         <div class="col-sm-4">

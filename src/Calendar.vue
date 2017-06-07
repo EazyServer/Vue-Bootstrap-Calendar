@@ -3,29 +3,30 @@
         <div v-if="loading">{{ $t('generic.loading')}}...</div>
 
         <div v-if="error" class="error"></div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header"><h2>{{$t('generic.calender')}}</h2></div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><h2>{{$t('generic.calender')}}</h2></div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <CalendarHeader :current-month="currentMonth"
+                                       :first-day="firstDay"
+                                       :locale="appLocale">
+                            </CalendarHeader>
 
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <CalendarHeader :current-month="currentMonth"
-                                   :first-day="firstDay"
-                                   :locale="appLocale">
-                        </CalendarHeader>
+                            <div class="full-calendar-body">
+                                <div class="weeks">
+                                    <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
+                                </div>
 
-                        <div class="full-calendar-body">
-                            <div class="weeks">
-                                <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
-                            </div>
-
-                            <div class="dates" ref="dates">
-                                <Week v-for="week in Weeks"
-                                      :firstDay="firstDay"
-                                      :key="week"
-                                      :week="week">
-                                </Week>
+                                <div class="dates" ref="dates">
+                                    <Week v-for="week in Weeks"
+                                          :firstDay="firstDay"
+                                          :key="week"
+                                          :week="week">
+                                    </Week>
+                                </div>
                             </div>
                         </div>
                     </div>
