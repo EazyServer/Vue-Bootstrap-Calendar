@@ -6,6 +6,7 @@
                 <select class="form-control language-select" v-model="localeSelect" @change="setLocale" id="locale">
                     <option value="ar">AR</option>
                     <option value="en">EN</option>
+                    <option value="de">DE</option>
                 </select>
             </div>
         </div>

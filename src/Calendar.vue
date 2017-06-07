@@ -10,10 +10,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <CalendarHeader :current-month="currentMonth"
-                                   :first-day="firstDay"
-                                   :locale="appLocale">
-                        </CalendarHeader>
+                        <calendar-header :current-month="currentMonth"
+                                         :first-day="firstDay"
+                                         :locale="appLocale">
+                        </calendar-header>
 
                         <div class="full-calendar-body">
                             <div class="weeks">
@@ -21,11 +21,11 @@
                             </div>
 
                             <div class="dates" ref="dates">
-                                <Week v-for="week in Weeks"
+                                <week v-for="(week, index) in Weeks"
                                       :firstDay="firstDay"
-                                      :key="week"
+                                      :key="index"
                                       :week="week">
-                                </Week>
+                                </week>
                             </div>
                         </div>
                     </div>
@@ -35,112 +35,144 @@
     </div>
 </template>
 <script>
-    import moment from 'moment';
-    import {CHANGE_MONTH} from './actions';
+	import moment from 'moment';
+	import {CHANGE_MONTH} from './actions';
 
-    export default {
-        data () {
-            return {
-                loading: true,
-                error: null,
-                currentMonth: moment().startOf('month'),
-            }
-        },
-        props: {
-            allEvents: {
-                type: Array,
-                default: function () {
-                    return [];
-                }
-            },
-            firstDay: {
-                type: Number | String,
-                validator (val) {
-                    let res = parseInt(val);
-                    return res >= 0 && res <= 6
-                },
-                default: 0
-            }
-        },
-        components: {
-            'CalendarHeader': require('./Components/Header.vue'),
-            'Week': require('./Components/Week.vue'),
-        },
-        created () {
-            let me = this;
-            this.$root.$on(CHANGE_MONTH, function (payload) {
-                me.currentMonth = payload;
-            });
-        },
-        mounted () {
-            this.loading = false;
-        },
-        computed: {
-            Weeks () {
-                let monthMomentObject = this.getMonthViewStartDate(this.currentMonth, this.firstDay);
-                let weeks = [], week = [], day = null, weekIndex, dayIndex;
+	export default {
+		data () {
+			return {
+				loading: true,
+				error: null,
+				currentMonth: moment().startOf('month'),
+			}
+		},
+		props: {
+			allEvents: {
+				type: Array,
+				default: function () {
+					return [];
+				}
+			},
+			firstDay: {
+				type: Number | String,
+				validator (val) {
+					let res = parseInt(val);
+					return res >= 0 && res <= 6
+				},
+				default: 0
+			}
+		},
+		components: {
+			'CalendarHeader': require('./Components/Header.vue'),
+			'Week': require('./Components/Week.vue'),
+		},
+		created () {
+			let me = this;
+			this.$root.$on(CHANGE_MONTH, function (payload) {
+				me.currentMonth = payload;
+			});
+		},
+		mounted () {
+			this.loading = false;
+		},
+		computed: {
+			Weeks () {
+				let monthMomentObject = this.getMonthViewStartDate(this.currentMonth, this.firstDay);
+				let weeks = [], week = [];
 
-                for ( weekIndex=0; weekIndex < 5; weekIndex++) {
-                    week = [];
+				let daysInCurrentMonth = this.currentMonth.daysInMonth();
 
-                    for (dayIndex=0; dayIndex < 7; dayIndex++) {
-                        day = {
-                            isToday: monthMomentObject.isSame(moment(), 'day'),
-                            isCurrentMonth: monthMomentObject.isSame(this.currentMonth, 'month'),
-                            weekDay: dayIndex,
-                            isWeekEnd: (dayIndex == 5 || dayIndex == 6),
-                            date: moment(monthMomentObject),
-                            events: this.getEvents(monthMomentObject)
-                        };
+				for ( let weekIndex=0; weekIndex < 5; weekIndex++) {
 
-                        week.push(day);
+					let week = [];
+					for (let dayIndex=0; dayIndex < 7; dayIndex++) {
 
-                        monthMomentObject.add(1, 'day');
-                    }
-                    weeks.push(week);
-                }
+						week.push(this.getDayObject(monthMomentObject, dayIndex));
 
-                return weeks;
-            },
-            appLocale : function () {
-                return i18n.locale;
-            },
-            events: function () {
-                return this.allEvents;
-            }
-        },
-        methods: {
-            getEvents (date) {
-                return this.events.filter(event => {
-                    return date.isSame(event.date, 'day')?event:null;
-                });
-            },
+						monthMomentObject.add(1, 'day');
+					}
 
-            getMonthViewStartDate (date, firstDay) {
-                firstDay = parseInt(firstDay);
+					weeks.push(week);
+				}
 
-                let start = moment(date).locale(this.appLocale);
-                let startOfMonth = moment(start.startOf('month'));
+				let diff = daysInCurrentMonth-weeks[4][6].date.format('D');
 
-                start.subtract(startOfMonth.day(), 'days');
 
-                if (startOfMonth.day() < firstDay) {
-                    start.subtract(7, 'days');
-                }
+				if(diff > 0 && diff < 3){
+					let week = [];
+					for (let dayIndex=0; dayIndex < 7; dayIndex++) {
 
-                start.add(firstDay, 'days');
+						week.push(this.getDayObject(monthMomentObject, dayIndex));
 
-                return start;
-            }
-        },
-        filters: {
-            weekDayName (weekday, firstDay, locale) {
-                firstDay = parseInt(firstDay);
-                const localMoment = moment().locale(locale);
-                return localMoment.localeData().weekdaysShort()[(weekday + firstDay) % 7];
-            }
-        }
-    }
+						monthMomentObject.add(1, 'day');
+					}
+
+					weeks.push(week);
+				}
+
+				return weeks;
+			},
+			appLocale : function () {
+				return i18n.locale;
+			},
+			events: function () {
+				return this.allEvents;
+			}
+		},
+		methods: {
+			getEvents (date) {
+				return this.events.filter(event => {
+					return date.isSame(event.date, 'day')?event:null;
+				});
+			},
+
+			getMonthViewStartDate (date, firstDay) {
+				firstDay = parseInt(firstDay);
+
+				let start = moment(date).locale(this.appLocale);
+				let startOfMonth = moment(start.startOf('month'));
+
+				start.subtract(startOfMonth.day(), 'days');
+
+				if (startOfMonth.day() < firstDay) {
+					start.subtract(7, 'days');
+				}
+
+				start.add(firstDay, 'days');
+
+				return start;
+			},
+
+			getDayObject(monthMomentObject, dayIndex){
+				return {
+					isToday: monthMomentObject.isSame(moment(), 'day'),
+					isCurrentMonth: monthMomentObject.isSame(this.currentMonth, 'month'),
+					weekDay: dayIndex,
+					isWeekEnd: (dayIndex == 5 || dayIndex == 6),
+					date: moment(monthMomentObject),
+					events: this.getEvents(monthMomentObject)
+				};
+			},
+
+			getWeekObject(monthMomentObject){
+				let week = [];
+				for (let dayIndex=0; dayIndex < 7; dayIndex++) {
+
+					week.push(this.getDayObject(monthMomentObject, dayIndex));
+
+					monthMomentObject.add(1, 'day');
+				}
+				return week;
+			}
+		},
+		filters: {
+			weekDayName (weekday, firstDay, locale) {
+				firstDay = parseInt(firstDay);
+				const localMoment = moment().locale(locale);
+				return localMoment.localeData().weekdaysShort()[(weekday + firstDay) % 7];
+			}
+		}
+	}
 
 </script>
 <style>

@@ -1,10 +1,10 @@
 <template>
     <div class="week-row" @click="showWeekNumber">
         <div class="week-number" v-if="showWeekNumberFlag">{{ $t('generic.week')}} {{week[0].date.format('w')}}</div>
-        <Day v-for="day in week"
+        <day v-for="(day, index) in week"
              :day="day"
-             :key="day.date"
-        ></Day>
+             :key="index"
+        ></day>
     </div>
 </template>
 <script>
@@ -31,10 +31,6 @@
                     me.showWeekNumberFlag = false;
                 }
             })
-        },
-        mounted() {
-        },
-        computed: {
         },
         methods : {
             showWeekNumber() {
