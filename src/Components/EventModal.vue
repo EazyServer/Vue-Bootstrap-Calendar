@@ -20,6 +20,15 @@
                                     <label for="event-name">Event Name:</label>
                                     <input type="text" class="form-control" id="event-name" v-model="eventName"/>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="event-color">Event Color:</label>
+                                    <select v-model="eventColor" class="form-control" id="event-color">
+                                        <option v-for="color in colors" v-bind:value="color.value">
+                                            {{ color.text }}
+                                        </option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
 
@@ -60,6 +69,14 @@
        data () {
            return {
                eventName: "",
+               eventColor: "",
+               colors: [
+                  { text: 'Blue', value: 'card-primary card-inverse' },
+                  { text: 'Green', value: 'card-success card-inverse' },
+                  { text: 'Light Blue', value: 'card-info card-inverse' },
+                  { text: 'Orange', value: 'card-warning card-inverse' },
+                  { text: 'Red', value: 'card-danger card-inverse' },
+               ]
            };
        },
        created () {
@@ -81,7 +98,7 @@
            ok () {
                this.$root.$emit(EVENT_ADDED, {
                    title: this.eventName,
-                   color: 'card-danger card-inverse',
+                   color: this.eventColor,
                    date: this.day.date._d
                });
                
