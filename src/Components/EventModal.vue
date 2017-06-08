@@ -10,19 +10,19 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h4 class="modal-title">
-                                Add Event
+                                {{ $t('generic.add_event') }}
                             </h4>
                         </div>
 
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="event-name">Event Name:</label>
-                                    <input type="text" class="form-control" id="event-name" v-model="eventName"/>
+                                    <label for="event-title">{{ $t('generic.event_title') }}:</label>
+                                    <input type="text" class="form-control" id="event-title" v-model="eventTitle"/>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="event-color">Event Color:</label>
+                                    <label for="event-color">{{ $t('generic.event_color') }}:</label>
                                     <select v-model="eventColor" class="form-control" id="event-color">
                                         <option v-for="color in colors" v-bind:value="color.value">
                                             {{ color.text }}
@@ -68,7 +68,7 @@
        },
        data () {
            return {
-               eventName: "",
+               eventTitle: "",
                eventColor: "",
                colors: [
                   { text: 'Blue', value: 'card-primary card-inverse' },
@@ -97,16 +97,16 @@
        methods: {
            ok () {
                this.$root.$emit(EVENT_ADDED, {
-                   title: this.eventName,
+                   title: this.eventTitle,
                    color: this.eventColor,
                    date: this.day.date._d
                });
                
-               this.eventName = "";           
+               this.eventTitle = "";           
                this.$emit('update:show', false);
            },
            cancel () {
-               this.eventName = "";
+               this.eventTitle = "";
                this.$emit('cancel');
                this.$emit('update:show', false)
            },

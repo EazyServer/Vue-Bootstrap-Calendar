@@ -8,5 +8,7 @@ export default {
 		'week': "Week",
 		'add_event': "Add Event",
 		'select_language': "Select language",
+		'event_title': "Event Title",
+		'event_color': "Event Color",
 	},
 }
