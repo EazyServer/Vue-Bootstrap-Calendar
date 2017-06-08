@@ -21,6 +21,9 @@
                     v-for="event in day.events">
             </EventCard>
         </div>
+        <EventModal title="Test" :show.sync="showAddEvent" :day="day">
+            Testing
+        </EventModal>
     </div>
 </template>
 <script>
@@ -29,11 +32,13 @@
     export default {
         data () {
             return {
-                isDaySelected: false
+                isDaySelected: false,
+                showAddEvent: false,
             }
         },
         components: {
             'EventCard' : require('./EventCard.vue'),
+            'EventModal': require('./EventModal.vue'),
         },
         props:{
             day: {
@@ -65,9 +70,8 @@
                 }
             },
             showAddEventForm(){
-                // TODO: Implement add event form
-                alert('Can you help implementing this?');
-            }
+                this.showAddEvent = true;
+            },
         }
     }
 </script>
