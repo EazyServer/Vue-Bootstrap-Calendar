@@ -4,7 +4,7 @@
     @click="showDayOptions">
         <div class="row">
             <div class="col-sm-6">
-                <div v-show="isDaySelected">
+                <div v-show="isDaySelected" v-if="canAddEvent">
                     <span class="badge badge-success" @click="showAddEventForm"> {{ $t('generic.add_event') }}</span>
                 </div>
             </div>
@@ -46,6 +46,12 @@
             },
             firstDay: {
                 type: String
+            },
+            canAddEvent: {
+                type: Boolean,
+            },
+            canDeleteEvent: {
+                type: Boolean,
             },
         },
         created(){

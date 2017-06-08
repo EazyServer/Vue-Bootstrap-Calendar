@@ -17,7 +17,7 @@
             },
             isDaySelected: {
                 type: Boolean
-            }
+            },
         },
         data() {
             return {

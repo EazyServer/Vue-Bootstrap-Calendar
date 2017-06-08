@@ -4,6 +4,8 @@
         <Day v-for="day in week"
              :day="day"
              :key="day.date"
+             :canAddEvent="canAddEvent"
+             :canDeleteEvent="canDeleteEvent"
         ></Day>
     </div>
 </template>
@@ -22,6 +24,12 @@
         props:{
             week: {
                 type: Array
+            },
+            canAddEvent: {
+                type: Boolean,
+            },
+            canDeleteEvent: {
+                type: Boolean,
             },
         },
         created(){

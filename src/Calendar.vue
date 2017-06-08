@@ -24,7 +24,9 @@
                                     <Week v-for="week in Weeks"
                                           :firstDay="firstDay"
                                           :key="week"
-                                          :week="week">
+                                          :week="week"
+                                          :canAddEvent="canAddEvent"
+                                          :canDeleteEvent="canDeleteEvent">
                                     </Week>
                                 </div>
                             </div>
@@ -61,7 +63,15 @@
                     return res >= 0 && res <= 6
                 },
                 default: 0
-            }
+            },
+            canAddEvent: {
+                type: Boolean,
+                default: true
+            },
+            canDeleteEvent: {
+                type: Boolean,
+                default: true
+            },
         },
         components: {
             'CalendarHeader': require('./Components/Header.vue'),
