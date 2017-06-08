@@ -29,12 +29,12 @@ import {messages} from 'vue-bootstrap-calendar';
 //to include Calendar locale(s) from this package, or you can use your own one!
 ```
 
-## How to use vue-bootstrap-calendar #
+## How to use vue-bootstrap-calendar 
 
 Include ```Calendar``` in you Vue App ```components``` then use ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your code. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
 Events array can be passed on via ``all-events`` binding.
 
-####Example:
+###Example:
 
 In your ``App.vue``:
 
@@ -44,6 +44,7 @@ In your ``App.vue``:
         <calendar
                 :first-day="1"
                 :all-events="events"
+                @eventAdded="eventAdded"
         ></calendar>
     </div>
 </template>
@@ -59,6 +60,11 @@ In your ``App.vue``:
         },
         components: {
             Calendar
+        },
+        methods: {
+            eventAdded(event) {
+                this.events.push(event);
+            }
         },
         mounted() {
             let me = this;
