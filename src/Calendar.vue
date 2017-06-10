@@ -51,7 +51,6 @@
                 loading: true,
                 error: null,
                 currentMonth: moment().startOf('month'),
-                translation: false,
             }
         },
         props: {
@@ -123,10 +122,10 @@
                 return weeks;
             },
             appLocale : function () {
-                if(this.translation)
+                if(typeof i18n != 'undefined')
                     return i18n.locale;
-                else
-                    return 'en';
+                
+                return 'en';
             },
             events: function () {
                 return this.allEvents;
