@@ -1,11 +1,15 @@
 <template>
     <div class="row">
-        <div v-if="loading">{{ $t('generic.loading')}}...</div>
+        <div v-if="loading && $i18n">{{ $t('generic.loading')}}...</div>
+        <div v-else-if="loading">Loading ...</div>
 
         <div v-if="error" class="error"></div>
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header"><h2>{{$t('generic.calender')}}</h2></div>
+                <div class="card-header">
+                    <h2 v-if="$i18n">{{$t('generic.calender')}}</h2>
+                    <h2 v-else>Calendar</h2>
+                </div>
 
                 <div class="card-block">
                     <div class="row">
@@ -47,6 +51,7 @@
                 loading: true,
                 error: null,
                 currentMonth: moment().startOf('month'),
+                translation: false,
             }
         },
         props: {
@@ -79,13 +84,13 @@
         },
         created () {
             let me = this;
-            this.$root.$on(CHANGE_MONTH, function (payload) {
+            this.$root.$on(CHANGE_MONTH, function (payload) {_t
                 me.currentMonth = payload;
             });      
 
             this.$root.$on(EVENT_ADDED, function(eventData) {
                 me.$emit('eventAdded', eventData);
-            });     
+            });  
         },
         mounted () {
             this.loading = false;
@@ -118,7 +123,10 @@
                 return weeks;
             },
             appLocale : function () {
-                return i18n.locale;
+                if(this.translation)
+                    return i18n.locale;
+                else
+                    return 'en';
             },
             events: function () {
                 return this.allEvents;

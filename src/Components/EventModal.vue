@@ -10,19 +10,26 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h4 class="modal-title">
-                                {{ $t('generic.add_event') }}
+                                <span v-if="$i18n">{{ $t('generic.add_event') }}</span>
+                                <span v-else>Add Event</span>
                             </h4>
                         </div>
 
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="event-title">{{ $t('generic.event_title') }}:</label>
+                                    <label for="event-title">
+                                        <span v-if="$i18n">{{ $t('generic.event_title') }}</span>:
+                                        <span v-else>Event Title</span>:
+                                    </label>
                                     <input type="text" class="form-control" id="event-title" v-model="eventTitle"/>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="event-color">{{ $t('generic.event_color') }}:</label>
+                                    <label for="event-color">
+                                        <span v-if="$i18n">{{ $t('generic.event_color') }}</span>:
+                                        <span v-else>Event Color</span>:
+                                    </label>
                                     <select v-model="eventColor" class="form-control" id="event-color">
                                         <option v-for="color in colors" v-bind:value="color.value">
                                             {{ color.text }}

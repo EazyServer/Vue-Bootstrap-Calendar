@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-sm-4">
-            <div class="form-group">
+            <div class="form-group" v-if="$i18n">
                 <label for="locale">{{ $t('generic.select_language')}}:</label>
                 <select class="form-control language-select" v-model="localeSelect" @change="setLocale" id="locale">
                     <option value="ar">AR</option>
@@ -12,9 +12,21 @@
         </div>
         <div class="col-sm-4 header-center">
             <div class="btn-group">
-                <button @click.stop="goPrev" class="btn btn-primary">&lArr; {{ $t('generic.previous')}}</button>
-                <button @click.stop="goToday" class="btn btn-secondary today-button">&dArr; {{ $t('generic.today')}}</button>
-                <button @click.stop="goNext" class="btn btn-primary">{{ $t('generic.next')}} &rArr;</button>
+                <button @click.stop="goPrev" class="btn btn-primary">&lArr; 
+                    <span v-if="$i18n">{{ $t('generic.previous')}}</span>
+                    <span v-else>Previous</span>
+                </button>
+
+                <button @click.stop="goToday" class="btn btn-secondary today-button">&dArr; 
+                    <span v-if="$i18n">{{ $t('generic.today')}}</span>
+                    <span v-else>Today</span>
+                </button>
+
+                <button @click.stop="goNext" class="btn btn-primary">
+                    <span v-if="$i18n">{{ $t('generic.next')}}</span> 
+                    <span v-else>Next</span>
+                    &rArr;
+                </button>
             </div>
         </div>
         <div class="col-sm-4">
