@@ -6,4 +6,8 @@ export default {
 	"en": en,
 	"ar": ar,
 	"de": de,
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> bootstrap4

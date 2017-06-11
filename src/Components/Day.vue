@@ -4,8 +4,9 @@
     @click="showDayOptions">
         <div class="row">
             <div class="col-sm-6">
-                <div v-show="isDaySelected">
-                    <span class="label label-success" @click="showAddEventForm"> {{ $t('generic.add_event') }}</span>
+                <div v-show="isDaySelected" v-if="canAddEvent">
+                    <span class="badge badge-success" @click="showAddEventForm" v-if="$i18n"> {{ $t('generic.add_event') }}</span>
+                    <span class="badge badge-success" @click="showAddEventForm" v-else>Add Event</span>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -21,6 +22,9 @@
                     v-for="event in day.events">
             </EventCard>
         </div>
+        <EventModal title="Test" :show.sync="showAddEvent" :day="day">
+            Testing
+        </EventModal>
     </div>
 </template>
 <script>
@@ -29,11 +33,13 @@
     export default {
         data () {
             return {
-                isDaySelected: false
+                isDaySelected: false,
+                showAddEvent: false,
             }
         },
         components: {
             'EventCard' : require('./EventCard.vue'),
+            'EventModal': require('./EventModal.vue'),
         },
         props:{
             day: {
@@ -41,6 +47,12 @@
             },
             firstDay: {
                 type: String
+            },
+            canAddEvent: {
+                type: Boolean,
+            },
+            canDeleteEvent: {
+                type: Boolean,
             },
         },
         created(){
@@ -65,9 +77,8 @@
                 }
             },
             showAddEventForm(){
-                // TODO: Implement add event form
-                alert('Can you help implementing this?');
-            }
+                this.showAddEvent = true;
+            },
         }
     }
 </script>
@@ -92,17 +103,17 @@
         background: #fff;
     }
 
-    .current-month p {
+    .current-month .day-number {
         color: rgba(0, 0, 0, .5);
         font-size: 1.5em;
     }
 
-    .selected-day p {
+    .selected-day .day-number {
         font-size: 2.4em;
         font-weight: bolder;
     }
 
-    .weekend p {
+    .weekend .day-number {
         color: rgba(210, 2, 2, 0.6);
     }
 
@@ -110,7 +121,7 @@
         background-color: #e8fde7;
     }
 
-    .today p {
+    .today .day-number {
         font-size: 2em;
         font-weight: bolder;
         color: #367016;

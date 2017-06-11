@@ -1,14 +1,17 @@
 # Vue Bootstrap Calendar
 
-> Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps to create a powerful Responsive Calendar App. See the [Demo site](https://eazyserver.github.io/Vue-Bootstrap-Calendar/).
+> Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps (v4) to create a powerful Responsive Calendar App. See the [Demo site](https://eazyserver.github.io/Vue-Bootstrap-Calendar/).
 
 
-![Demo Vue Bootstrap Calendar](https://raw.githubusercontent.com/EazyServer/Vue-Bootstrap-Calendar/master/assets/vue-bootstrap-calendar.png)
+This repository is based on [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) [Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar), which uses Bootstrap 3.
+At the moment the Master Branch is also using Bootstrap 3, while i'm working on a Bootstrap 4 version (which already works as expected) in the bootstrap4 Branch.
+
+![Demo Vue Bootstrap Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar/blob/bootstrap4/assets/vue-bootstrap-calendar.png)
 
 
-The calender only uses bootstrap ``CSS``, NO ``bootstrap.js`` or ``jquery.js`` is needed for this project. Its purely Vue2 implementation.
+The calender only uses bootstrap ``CSS``, NO ``bootstrap.js`` or ``jquery.js`` is needed/required for this project. It's a purely Vue2 implementation.
 
-This package is locale/language ready, with Arabic and English implemented so far. May be you can help adding more languages?
+This package is locale/language ready, with Arabic, English and German implemented so far.
 
 ## Install vue-bootstrap-calendar #
 
@@ -29,12 +32,12 @@ import {messages} from 'vue-bootstrap-calendar';
 //to include Calendar locale(s) from this package, or you can use your own one!
 ```
 
-## How to use vue-bootstrap-calendar #
+## How to use vue-bootstrap-calendar 
 
 Include ```Calendar``` in you Vue App ```components``` then use ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your code. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
 Events array can be passed on via ``all-events`` binding.
 
-####Example:
+### Example:
 
 In your ``App.vue``:
 
@@ -44,6 +47,7 @@ In your ``App.vue``:
         <calendar
                 :first-day="1"
                 :all-events="events"
+                @eventAdded="eventAdded"
         ></calendar>
     </div>
 </template>
@@ -59,6 +63,11 @@ In your ``App.vue``:
         },
         components: {
             Calendar
+        },
+        methods: {
+            eventAdded(event) {
+                this.events.push(event);
+            }
         },
         mounted() {
             let me = this;

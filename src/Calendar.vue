@@ -1,31 +1,38 @@
 <template>
     <div class="row">
-        <div v-if="loading">{{ $t('generic.loading')}}...</div>
+        <div v-if="loading && $i18n">{{ $t('generic.loading')}}...</div>
+        <div v-else-if="loading">Loading ...</div>
 
         <div v-if="error" class="error"></div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 v-if="$i18n">{{$t('generic.calender')}}</h2>
+                    <h2 v-else>Calendar</h2>
+                </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><h2>{{$t('generic.calender')}}</h2></div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <CalendarHeader :current-month="currentMonth"
+                                       :first-day="firstDay"
+                                       :locale="appLocale">
+                            </CalendarHeader>
 
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <CalendarHeader :current-month="currentMonth"
-                                   :first-day="firstDay"
-                                   :locale="appLocale">
-                        </CalendarHeader>
+                            <div class="full-calendar-body">
+                                <div class="weeks">
+                                    <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
+                                </div>
 
-                        <div class="full-calendar-body">
-                            <div class="weeks">
-                                <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
-                            </div>
-
-                            <div class="dates" ref="dates">
-                                <Week v-for="week in Weeks"
-                                      :firstDay="firstDay"
-                                      :key="week"
-                                      :week="week">
-                                </Week>
+                                <div class="dates" ref="dates">
+                                    <Week v-for="week in Weeks"
+                                          :firstDay="firstDay"
+                                          :key="week"
+                                          :week="week"
+                                          :canAddEvent="canAddEvent"
+                                          :canDeleteEvent="canDeleteEvent">
+                                    </Week>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,7 +43,7 @@
 </template>
 <script>
     import moment from 'moment';
-    import {CHANGE_MONTH} from './actions';
+    import {CHANGE_MONTH, EVENT_ADDED, EVENT_DELETED} from './actions';
 
     export default {
         data () {
@@ -60,7 +67,15 @@
                     return res >= 0 && res <= 6
                 },
                 default: 0
-            }
+            },
+            canAddEvent: {
+                type: Boolean,
+                default: true
+            },
+            canDeleteEvent: {
+                type: Boolean,
+                default: true
+            },
         },
         components: {
             'CalendarHeader': require('./Components/Header.vue'),
@@ -68,8 +83,16 @@
         },
         created () {
             let me = this;
-            this.$root.$on(CHANGE_MONTH, function (payload) {
+            this.$root.$on(CHANGE_MONTH, function (payload) {_t
                 me.currentMonth = payload;
+            });      
+
+            this.$root.$on(EVENT_ADDED, function(eventData) {
+                me.$emit('eventAdded', eventData);
+            });  
+
+            this.$root.$on(EVENT_DELETED, function (eventData) {
+                me.$emit('eventDeleted', eventData);
             });
         },
         mounted () {
@@ -103,7 +126,10 @@
                 return weeks;
             },
             appLocale : function () {
-                return i18n.locale;
+                if(typeof i18n != 'undefined')
+                    return i18n.locale;
+                
+                return 'en';
             },
             events: function () {
                 return this.allEvents;

@@ -1,9 +1,12 @@
 <template>
     <div class="week-row" @click="showWeekNumber">
-        <div class="week-number" v-if="showWeekNumberFlag">{{ $t('generic.week')}} {{week[0].date.format('w')}}</div>
+        <div class="week-number" v-if="showWeekNumberFlag && $i18n">{{ $t('generic.week')}} {{week[0].date.format('w')}}</div>
+        <div class="week-number" v-else-if="showWeekNumberFlag">Week {{week[0].date.format('w')}}</div>
         <Day v-for="day in week"
              :day="day"
              :key="day.date"
+             :canAddEvent="canAddEvent"
+             :canDeleteEvent="canDeleteEvent"
         ></Day>
     </div>
 </template>
@@ -22,6 +25,12 @@
         props:{
             week: {
                 type: Array
+            },
+            canAddEvent: {
+                type: Boolean,
+            },
+            canDeleteEvent: {
+                type: Boolean,
             },
         },
         created(){
