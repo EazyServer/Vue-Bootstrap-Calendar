@@ -1,6 +1,6 @@
 # Vue Bootstrap Calendar
 
-> Uses the magical power of VueJS v2 and beauty of Twitter Bootstrap 4 to create a powerful responsive Calendar App. See the [Demo site](https://eazyserver.github.io/Vue-Bootstrap-Calendar/).
+> Uses the magical power of VueJS v2 and beauty of Twitter Bootstrap 4 to create a powerful responsive Calendar App. See the [Demo site](https://exclusiv3.github.io/Vue-Bootstrap-Calendar/).
 
 
 This repository is based on [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) [Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar), which uses Bootstrap 3.
