@@ -18,17 +18,17 @@ Please feel free to contribute for any language.
 
 * Please note, if you haven't got vue-i18n installed this package will default to English!
 
-## Install vue-bootstrap-calendar #
+## Install vue-bootstrap4-calendar #
 
 You can install via npm
    
-    $ npm install -S vue-bootstrap-calendar
+    $ npm install -S vue-bootstrap4-calendar
 
 Then you can import ``Calendar`` from the package like this:
 
 ```javascript
-import {Calendar} from 'vue-bootstrap-calendar';
-import {messages} from 'vue-bootstrap-calendar';
+import {Calendar} from 'vue-bootstrap4-calendar';
+import {messages} from 'vue-bootstrap4-calendar';
 //to include Calendar locale(s) from this package, or you can use your own one!
 ```
 
@@ -58,7 +58,7 @@ In your ``App.vue``:
 </template>
 
 <script>
-    import {Calendar} from 'vue-bootstrap-calendar';
+    import {Calendar} from 'vue-bootstrap4-calendar';
     export default {
         name: 'app',
         data() {
@@ -104,7 +104,7 @@ import App from './App.vue'
 
 Vue.use(VueI18n);
 
-import {messages} from 'vue-bootstrap-calendar'; // you can include your own translation here if you want!
+import {messages} from 'vue-bootstrap4-calendar'; // you can include your own translation here if you want!
 
 window.i18n = new VueI18n({
     locale: 'en',
