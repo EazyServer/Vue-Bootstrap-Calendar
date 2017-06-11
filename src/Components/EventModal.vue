@@ -19,16 +19,16 @@
                             <form>
                                 <div class="form-group">
                                     <label for="event-title">
-                                        <span v-if="$i18n">{{ $t('generic.event_title') }}</span>:
-                                        <span v-else>Event Title</span>:
+                                        <span v-if="$i18n">{{ $t('generic.event_title') }}:</span>
+                                        <span v-else>Event Title:</span>
                                     </label>
                                     <input type="text" class="form-control" id="event-title" v-model="eventTitle"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="event-color">
-                                        <span v-if="$i18n">{{ $t('generic.event_color') }}</span>:
-                                        <span v-else>Event Color</span>:
+                                        <span v-if="$i18n">{{ $t('generic.event_color') }}:</span>
+                                        <span v-else>Event Color:</span>
                                     </label>
                                     <select v-model="eventColor" class="form-control" id="event-color">
                                         <option v-for="color in colors" v-bind:value="color.value">
@@ -36,12 +36,17 @@
                                         </option>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="event-desc">{{ $t('generic.event_description')}}:</label>
+                                    <textarea v-model="eventDesc" class="form-control" id="event-desc"></textarea>
+                                </div>
                             </form>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" @click="cancel">{{cancelText}}</button>
-                            <button type="button" class="btn btn-primary" @click="ok">{{confirmText}}</button>
+                            <button type="button" class="btn btn-danger" @click="cancel">{{ $t('generic.cancel')}}</button>
+                            <button type="button" class="btn btn-primary" @click="saveEvent">{{ $t('generic.add_event')}}</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +57,7 @@
 </template>
 
 <script>
-    import {EVENT_ADDED} from '../actions';
+    import {EVENT_ADDED, CANCEL_ADD_EVENT_FORM, SHOW_ADD_EVENT_FORM} from '../actions';
 
     export default {
         
@@ -64,32 +69,40 @@
                type: Boolean,
                default: false
            },
-           confirmText: {
-               type: String,
-               default: 'Add Event'
-           },
-           cancelText: {
-               type: String,
-               default: 'Cancel'
-           },
        },
        data () {
            return {
                eventTitle: "",
                eventColor: "",
-               colors: [
-                  { text: 'Blue', value: 'card-primary card-inverse' },
-                  { text: 'Green', value: 'card-success card-inverse' },
-                  { text: 'Light Blue', value: 'card-info card-inverse' },
-                  { text: 'Orange', value: 'card-warning card-inverse' },
-                  { text: 'Red', value: 'card-danger card-inverse' },
-               ]
+               eventDesc: "",
+               colors: []
            };
        },
        created () {
-           if (this.show) {
-               document.body.className += ' modal-open';
-           }
+            if (this.show) {
+                document.body.className += ' modal-open';
+            }
+
+            if(this.$i18n) {
+                this.colors.push(
+                    { text: this.$t('generic.color_grey'), value: '' },
+                    { text: this.$t('generic.color_blue'), value: 'card-primary card-inverse' },
+                    { text: this.$t('generic.color_lightblue'), value: 'card-info card-inverse' },
+                    { text: this.$t('generic.color_green'), value: 'card-success card-inverse' },
+                    { text: this.$t('generic.color_orange'), value: 'card-warning card-inverse' },
+                    { text: this.$t('generic.color_red'), value: 'card-danger card-inverse' },         
+                )
+            }
+            else {
+                this.colors.push(
+                    { text: 'Grey', value: '' },
+                    { text: 'Blue', value: 'card-primary card-inverse' },
+                    { text: 'Lightblue', value: 'card-info card-inverse' },
+                    { text: 'Green', value: 'card-success card-inverse' },
+                    { text: 'Orange', value: 'card-warning card-inverse' },
+                    { text: 'Red', value: 'card-danger card-inverse' },         
+                )
+            }
        },
        beforeDestroy () {
            document.body.className = document.body.className.replace(/\s?modal-open/, '');
@@ -102,20 +115,23 @@
            }
        },
        methods: {
-           ok () {
+           saveEvent () {
                this.$root.$emit(EVENT_ADDED, {
                    title: this.eventTitle,
                    color: this.eventColor,
+                   description: this.eventDesc,
                    date: this.day.date._d
                });
                
-               this.eventTitle = "";           
-               this.$emit('update:show', false);
+               this.eventTitle = "";
+               this.eventDesc = "";
+               this.$emit(SHOW_ADD_EVENT_FORM, false);
            },
            cancel () {
                this.eventTitle = "";
-               this.$emit('cancel');
-               this.$emit('update:show', false)
+               this.eventDesc = "";
+               this.$emit(CANCEL_ADD_EVENT_FORM);
+               this.$emit(SHOW_ADD_EVENT_FORM, false)
            },
            clickBackdrop () {
                this.cancel();
@@ -129,12 +145,12 @@
         display: block;
     }
     .modal-enter-active, .modal-leave-active {
-        transition: opacity .2s
+        transition: opacity .2s;
     }
     .modal-enter, .modal-leave-to {
-        opacity: 0
+        opacity: 0;
     }
     .modal-backdrop {
-        opacity: 0;
+        opacity: 0.3;
     }
 </style>

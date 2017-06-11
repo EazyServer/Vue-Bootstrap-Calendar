@@ -10,5 +10,13 @@ export default {
 		'select_language': "Sprache Auswählen",
 		'event_title': "Event Titel",
 		'event_color': "Event Farbe",
+		'event_description': "Event Beschreibung",
+		'cancel': "Abbrechen",
+		'color_grey': "Grau",
+		'color_blue': "Blau",
+		'color_lightblue': "Hellblau",
+		'color_green': "Grün",
+		'color_orange': "Orange",
+		'color_red': "Rot",
 	},
 }
