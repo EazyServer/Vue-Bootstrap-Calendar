@@ -17,8 +17,14 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" @click="cancel">{{ $t('generic.cancel') }}</button>
-                            <button type="button" class="btn btn-warning" @click="deleteEvent">{{ $t('generic.delete_event') }}</button>
+                            <button type="button" class="btn btn-danger" @click="cancel">
+                                <span v-if="$i18n">{{ $t('generic.cancel') }}</span>
+                                <span v-else>Cancel</span>
+                            </button>
+                            <button type="button" class="btn btn-warning" @click="deleteEvent">
+                                <span v-if="$i18n">{{ $t('generic.delete_event') }}</span>
+                                <span v-else>Delete Event</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -64,8 +70,6 @@
        },
        methods: {
            deleteEvent () {
-               let me = this;
-
                this.$root.$emit(EVENT_DELETED, this.event);
                this.$emit(SHOW_DETAILS_EVENT_MODAL, false);
            },

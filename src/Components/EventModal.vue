@@ -38,15 +38,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="event-desc">{{ $t('generic.event_description')}}:</label>
+                                    <label for="event-desc">
+                                        <span v-if="$i18n">{{ $t('generic.event_description')}}:</span>
+                                        <span v-else>Event Description:</span>
+                                    </label>
                                     <textarea v-model="eventDesc" class="form-control" id="event-desc"></textarea>
                                 </div>
                             </form>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" @click="cancel">{{ $t('generic.cancel')}}</button>
-                            <button type="button" class="btn btn-primary" @click="saveEvent">{{ $t('generic.add_event')}}</button>
+                            <button type="button" class="btn btn-danger" @click="cancel">
+                                <span v-if="$i18n">{{ $t('generic.cancel')}}</span>
+                                <span v-else>Cancel</span>
+                            </button>
+                            <button type="button" class="btn btn-primary" @click="saveEvent">
+                                <span v-if="$i18n">{{ $t('generic.add_event')}}</span>
+                                <span v-else>Add Event</span>
+                            </button>
                         </div>
                     </div>
                 </div>
