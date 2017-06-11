@@ -36,7 +36,7 @@
 </template>
 <script>
     import moment from 'moment';
-    import {CHANGE_MONTH} from './actions';
+    import {CHANGE_MONTH, EVENT_ADDED} from './actions';
 
     export default {
         data () {
@@ -70,6 +70,10 @@
             let me = this;
             this.$root.$on(CHANGE_MONTH, function (payload) {
                 me.currentMonth = payload;
+            });
+
+            this.$root.$on(EVENT_ADDED, function(payload) {
+                me.$emit('eventAdded', payload);
             });
         },
         mounted () {
