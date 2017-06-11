@@ -4,7 +4,7 @@
             <div class="card-header event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
         </div>
 
-        <EventDetails :show.sync="displayEventDetails" :event="event"></EventDetails>
+        <EventDetails :show.sync="displayEventDetails" :event="event" :canDeleteEvent="canDeleteEvent"></EventDetails>
     </div>
 </template>
 
@@ -20,6 +20,9 @@
             isDaySelected: {
                 type: Boolean
             },
+            canDeleteEvent: {
+                type: Boolean,
+            }
         },
         data() {
             return {

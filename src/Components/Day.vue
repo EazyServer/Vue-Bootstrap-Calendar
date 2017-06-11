@@ -19,12 +19,11 @@
                     :key="event.id"
                     :day-date="day.date"
                     :is-day-selected="isDaySelected"
+                    :canDeleteEvent="canDeleteEvent"
                     v-for="event in day.events">
             </EventCard>
         </div>
-        <EventModal title="Test" :show.sync="showAddEvent" :day="day">
-            Testing
-        </EventModal>
+        <EventModal :show.sync="showAddEvent" :day="day"></EventModal>
     </div>
 </template>
 <script>

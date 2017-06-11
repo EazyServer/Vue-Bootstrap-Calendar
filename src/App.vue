@@ -3,6 +3,8 @@
         <calendar
                 :first-day="1"
                 :all-events="events"
+                :canAddEvent="true"
+                :canDeleteEvent="true"
                 @eventAdded="eventAdded"
                 @eventDeleted="eventDeleted"
         ></calendar>

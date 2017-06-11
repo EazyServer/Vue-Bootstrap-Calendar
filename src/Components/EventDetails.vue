@@ -21,7 +21,7 @@
                                 <span v-if="$i18n">{{ $t('generic.cancel') }}</span>
                                 <span v-else>Cancel</span>
                             </button>
-                            <button type="button" class="btn btn-warning" @click="deleteEvent">
+                            <button type="button" class="btn btn-warning" @click="deleteEvent" v-if="canDeleteEvent">
                                 <span v-if="$i18n">{{ $t('generic.delete_event') }}</span>
                                 <span v-else>Delete Event</span>
                             </button>
@@ -47,6 +47,9 @@
            event: {
                type: Object,
                required: true,
+           },
+           canDeleteEvent: {
+               type: Boolean,
            }
        },
        data () {
