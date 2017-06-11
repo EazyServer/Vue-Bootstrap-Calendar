@@ -7,6 +7,7 @@ export default {
 		'today': "Heute",
 		'week': "Woche",
 		'add_event': "Event hinzufügen",
+		'delete_event': "Event löschen",
 		'select_language': "Sprache Auswählen",
 		'event_title': "Event Titel",
 		'event_color': "Event Farbe",

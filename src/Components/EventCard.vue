@@ -1,15 +1,17 @@
 <template>
-    <div class="card event" :class="[event.color]" @click="showEventDetails">
-        <div class="card-header event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
-    </div>
+    <div>
+        <div class="card event" :class="[event.color]" @click="showEventDetails">
+            <div class="card-header event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
+        </div>
 
-    
+        <EventDetails :show.sync="displayEventDetails" :event="event"></EventDetails>
+    </div>
 </template>
 
 <script>
     export default {
         components: {
-            'EventModal': require('./EventModal.vue'),
+            'EventDetails': require('./EventDetails.vue'),
         },
         props: {
             event: {
@@ -21,14 +23,13 @@
         },
         data() {
             return {
-                showModal: false,
+                displayEventDetails:  false,
             }
         },
         methods: {
             showEventDetails() {
                 if(this.isDaySelected){
-                    // TODO: implement event details presentation
-                    alert(this.event.title+' is selected. Can you help implement this too?');
+                    this.displayEventDetails = true;
                 }
             }
         }
@@ -36,7 +37,7 @@
 </script>
 <style>
     .event {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
     .event > .event-title {
         padding: 0px 5px;

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import {EVENT_ADDED, CANCEL_ADD_EVENT_FORM, SHOW_ADD_EVENT_FORM} from '../actions';
+    import {EVENT_ADDED, SHOW_ADD_EVENT_FORM} from '../actions';
 
     export default {
         
@@ -130,7 +130,6 @@
            cancel () {
                this.eventTitle = "";
                this.eventDesc = "";
-               this.$emit(CANCEL_ADD_EVENT_FORM);
                this.$emit(SHOW_ADD_EVENT_FORM, false)
            },
            clickBackdrop () {

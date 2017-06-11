@@ -103,17 +103,17 @@
         background: #fff;
     }
 
-    .current-month p {
+    .current-month .day-number {
         color: rgba(0, 0, 0, .5);
         font-size: 1.5em;
     }
 
-    .selected-day p {
+    .selected-day .day-number {
         font-size: 2.4em;
         font-weight: bolder;
     }
 
-    .weekend p {
+    .weekend .day-number {
         color: rgba(210, 2, 2, 0.6);
     }
 
@@ -121,7 +121,7 @@
         background-color: #e8fde7;
     }
 
-    .today p {
+    .today .day-number {
         font-size: 2em;
         font-weight: bolder;
         color: #367016;

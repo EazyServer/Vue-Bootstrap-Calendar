@@ -43,7 +43,7 @@
 </template>
 <script>
     import moment from 'moment';
-    import {CHANGE_MONTH, EVENT_ADDED} from './actions';
+    import {CHANGE_MONTH, EVENT_ADDED, EVENT_DELETED} from './actions';
 
     export default {
         data () {
@@ -90,6 +90,10 @@
             this.$root.$on(EVENT_ADDED, function(eventData) {
                 me.$emit('eventAdded', eventData);
             });  
+
+            this.$root.$on(EVENT_DELETED, function (eventData) {
+                me.$emit('eventDeleted', eventData);
+            });
         },
         mounted () {
             this.loading = false;

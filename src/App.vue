@@ -4,6 +4,7 @@
                 :first-day="1"
                 :all-events="events"
                 @eventAdded="eventAdded"
+                @eventDeleted="eventDeleted"
         ></calendar>
     </div>
 </template>
@@ -21,8 +22,11 @@
             Calendar
         },
         methods: {
-            eventAdded(eventData) {
-                this.events.push(eventData);
+            eventAdded(event) {
+                this.events.push(event);
+            },
+            eventDeleted(event) {
+                this.events.splice(this.events.indexOf(event), 1);
             },
         },
         mounted() {
