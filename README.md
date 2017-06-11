@@ -7,7 +7,7 @@ This repository is based on [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) [
 
 This project aims to provide the Calendar for Bootstrap 4 and enhance it further.
 
-![Demo Vue Bootstrap Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar/blob/master/assets/vue-bootstrap-calendar.png)
+![Demo Vue Bootstrap Calendar](https://raw.githubusercontent.com/ExCluSiv3/Vue-Bootstrap-Calendar/master/assets/vue-bootstrap-calendar.png)
 
 
 This Calendar only depends on the Bootstrap 4 CSS. Using Bootstrap 4 JS or even jQuery is NOT required.
