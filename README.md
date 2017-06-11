@@ -1,40 +1,40 @@
 # Vue Bootstrap Calendar
 
-> Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps (v4) to create a powerful Responsive Calendar App. See the [Demo site](https://eazyserver.github.io/Vue-Bootstrap-Calendar/).
+> Uses the magical power of VueJS v2 and beauty of Twitter Bootstrap 4 to create a powerful responsive Calendar App. See the [Demo site](https://eazyserver.github.io/Vue-Bootstrap-Calendar/).
 
 
 This repository is based on [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) [Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar), which uses Bootstrap 3.
-At the moment the Master Branch is also using Bootstrap 3, while i'm working on a Bootstrap 4 version (which already works as expected) in the bootstrap4 Branch.
+
+This project aims to provide the Calendar for Bootstrap 4 and enhance it further.
 
 ![Demo Vue Bootstrap Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar/blob/bootstrap4/assets/vue-bootstrap-calendar.png)
 
 
-The calender only uses bootstrap ``CSS``, NO ``bootstrap.js`` or ``jquery.js`` is needed/required for this project. It's a purely Vue2 implementation.
+This Calendar only depends on the Bootstrap 4 CSS. Using Bootstrap 4 JS or even jQuery is NOT required.
+This implementation is fully based on VueJS 2.
 
 This package is locale/language ready, with Arabic, English and German implemented so far.
+Please feel free to contribute for any language.
+
+* Please note, if you haven't got vue-i18n installed this package will default to English!
 
 ## Install vue-bootstrap-calendar #
 
 You can install via npm
    
-    $ npm install -S vue-bootstrap-calendar
+    `$ npm install -S vue-bootstrap-calendar`
 
+Then you can import ``Calendar`` from the package like this:
 
-* Please note, this package depends on [vue-i18n](https://github.com/kazupon/vue-i18n) to run the translation engine, and it will break with out it! I am trying to figure out a way to not break the package when i18n is not defined! Feel free to advise me...
-
-Then you can import ``Calendar`` from the package like so:
 ```javascript
 import {Calendar} from 'vue-bootstrap-calendar';
-// the main Calender App found here
-
-
 import {messages} from 'vue-bootstrap-calendar';
 //to include Calendar locale(s) from this package, or you can use your own one!
 ```
 
 ## How to use vue-bootstrap-calendar 
 
-Include ```Calendar``` in you Vue App ```components``` then use ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your code. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
+Include ```Calendar``` in your Vue Apps ```components``` then use ```<Calendar :first-day="x" :all-events="events"></Calendar>``` in your code. ``x`` is an integer for the start of the week, which can be one of the following values ``0,1,2,3,4,5,6``, where 0 for Sunday, 1 for Monday and so on...
 Events array can be passed on via ``all-events`` binding.
 
 ### Example:
@@ -114,7 +114,9 @@ new Vue({
 
 ## Copyright and License
 
-[Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar) was written by [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) and is released under the 
-[MIT License](LICENSE.md).
+The Bootstrap 3 Version and base for this [Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar) was written by [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) and is released under the [MIT License](LICENSE.md).
 
 Copyright (c) 2017 Yarob Al-Taay
+
+The Bootstrap 4 Version [Vue-Bootstrap-Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar) is written and maintained by [Max Eckel] 
+(https://twitter.com/max_eckel) and is also released under the [MIT License](LICENSE.md).
