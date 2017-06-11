@@ -124,7 +124,4 @@ new Vue({
 
 The Bootstrap 3 Version and base for this [Vue-Bootstrap-Calendar](https://github.com/EazyServer/Vue-Bootstrap-Calendar) was written by [Yarob Al-Taay](https://twitter.com/TheEpicVoyage) and is released under the [MIT License](LICENSE.md).
 
-Copyright (c) 2017 Yarob Al-Taay
-
-The Bootstrap 4 Version [Vue-Bootstrap-Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar) is written and maintained by [Max Eckel] 
-(https://twitter.com/max_eckel) and is also released under the [MIT License](LICENSE.md).
+This Bootstrap 4 Version [Vue-Bootstrap-Calendar](https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar) is written and maintained by [Max Eckel](https://twitter.com/max_eckel) and is also released under the [MIT License](LICENSE.md).
