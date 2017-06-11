@@ -1,7 +1,7 @@
 {
   "name": "vue-bootstrap4-calendar",
   "description": "Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps 4 to create a powerful Responsive Calendar App.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "max <max.eckel@yahoo.de>",
   "homepage": "https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar",
   "repository": {
@@ -9,7 +9,7 @@
     "url": "git@github.com:ExCluSiv3/Vue-Bootstrap-Calendar.git"
   },
   "bugs": {
-    "url" : "https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar/issues"
+    "url": "https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar/issues"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
@@ -33,5 +33,5 @@
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0"
   },
-  "license" : "MIT"
+  "license": "MIT"
 }
