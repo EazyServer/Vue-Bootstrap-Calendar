@@ -22,7 +22,7 @@ Please feel free to contribute for any language.
 
 You can install via npm
    
-    `$ npm install -S vue-bootstrap-calendar`
+    $ npm install -S vue-bootstrap-calendar
 
 Then you can import ``Calendar`` from the package like this:
 
@@ -48,6 +48,7 @@ In your ``App.vue``:
                 :first-day="1"
                 :all-events="events"
                 @eventAdded="eventAdded"
+                @eventDeleted="eventDeleted"
         ></calendar>
     </div>
 </template>
@@ -67,7 +68,10 @@ In your ``App.vue``:
         methods: {
             eventAdded(event) {
                 this.events.push(event);
-            }
+            },
+            eventDeleted(event) {
+                this.events.splice(this.events.indexOf(event), 1);
+            },
         },
         mounted() {
             let me = this;
