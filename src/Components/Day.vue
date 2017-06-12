@@ -30,17 +30,13 @@
 <script>
     import moment from 'moment';
     import {DAY_SELECTED, CHANGE_MONTH, EVENT_ADDED, EVENT_DELETED} from '../actions';
+
     export default {
-        data () {
-            return {
-                isDaySelected: false,
-                showAddEvent: false,
-            }
-        },
         components: {
             'EventCard' : require('./EventCard.vue'),
             'EventModal': require('./EventModal.vue'),
         },
+
         props:{
             day: {
                 type: Object
@@ -55,6 +51,14 @@
                 type: Boolean,
             },
         },
+
+        data () {
+            return {
+                isDaySelected: false,
+                showAddEvent: false,
+            }
+        },
+
         created(){
             let me = this;
             this.$root.$on(DAY_SELECTED, function (payload) {
@@ -67,6 +71,7 @@
                 me.isDaySelected = false;
             });
         },
+
         methods : {
             showDayOptions(){
                 let me = this;
@@ -76,12 +81,15 @@
                     this.$root.$emit(DAY_SELECTED, {dayDate:me.day.date});
                 }
             },
+
             showAddEventForm(){
                 this.showAddEvent = true;
             },
+            
             eventAdded(event) {
                 this.$emit(EVENT_ADDED, event);
             },
+            
             eventDeleted(event) {
                 this.$emit(EVENT_DELETED, event);
             }
@@ -102,7 +110,6 @@
         text-align: right;
         color: rgba(0, 0, 0, .25);
         font-size: 1em;
-        padding: 5px;
     }
 
     .current-month {
@@ -115,8 +122,8 @@
     }
 
     .selected-day .day-number {
-        font-size: 2.4em;
-        font-weight: bolder;
+        font-size: 2em;
+        font-weight: bold;
     }
 
     .weekend .day-number {
@@ -129,7 +136,7 @@
 
     .today .day-number {
         font-size: 2em;
-        font-weight: bolder;
+        font-weight: bold;
         color: #367016;
     }
 </style>

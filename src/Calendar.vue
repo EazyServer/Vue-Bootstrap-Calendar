@@ -48,12 +48,9 @@
     import {CHANGE_MONTH, EVENT_ADDED, EVENT_DELETED} from './actions';
 
     export default {
-        data () {
-            return {
-                loading: true,
-                error: null,
-                currentMonth: moment().startOf('month'),
-            }
+        components: {
+            'CalendarHeader': require('./Components/Header.vue'),
+            'Week': require('./Components/Week.vue'),
         },
         props: {
             allEvents: {
@@ -62,42 +59,52 @@
                     return [];
                 }
             },
+
             firstDay: {
                 type: Number | String,
                 validator (val) {
                     let res = parseInt(val);
-                    return res >= 0 && res <= 6
+                    return res >= 0 && res <= 6;
                 },
                 default: 0
             },
+
             canAddEvent: {
                 type: Boolean,
                 default: true
             },
+
             canDeleteEvent: {
                 type: Boolean,
                 default: true
             },
         },
-        components: {
-            'CalendarHeader': require('./Components/Header.vue'),
-            'Week': require('./Components/Week.vue'),
+
+        data () {
+            return {
+                loading: true,
+                error: null,
+                currentMonth: moment().startOf('month'),
+            }
         },
+
         created () {
             let me = this;
-            this.$root.$on(CHANGE_MONTH, function (payload) {_t
+            this.$root.$on(CHANGE_MONTH, function (payload) {
                 me.currentMonth = payload;
             });      
         },
+
         mounted () {
             this.loading = false;
         },
+
         computed: {
             Weeks () {
                 let monthMomentObject = this.getMonthViewStartDate(this.currentMonth, this.firstDay);
                 let weeks = [], week = [], day = null, weekIndex, dayIndex;
 
-                for ( weekIndex=0; weekIndex < 5; weekIndex++) {
+                for (weekIndex=0; weekIndex < 5; weekIndex++) {
                     week = [];
 
                     for (dayIndex=0; dayIndex < 7; dayIndex++) {
@@ -119,16 +126,19 @@
 
                 return weeks;
             },
+
             appLocale : function () {
                 if(typeof i18n != 'undefined')
                     return i18n.locale;
                 
                 return 'en';
             },
+
             events: function () {
                 return this.allEvents;
             }
         },
+        
         methods: {
             getEvents (date) {
                 return this.events.filter(event => {

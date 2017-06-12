@@ -38,7 +38,6 @@
     import {EVENT_DELETED, CANCEL_DETAILS_EVENT_MODAL, SHOW_DETAILS_EVENT_MODAL} from '../actions';
 
     export default {
-        
        props: {
            show: {
                type: Boolean,
@@ -52,18 +51,16 @@
                type: Boolean,
            }
        },
-       data () {
-           return {
-           };
-       },
+
        created () {
-           if (this.show) {
+           if (this.show) 
                document.body.className += ' modal-open';
-           }
        },
+
        beforeDestroy () {
            document.body.className = document.body.className.replace(/\s?modal-open/, '');
        },
+
        watch: {
            show (value) {
                if (value) {
@@ -71,17 +68,24 @@
                }
            }
        },
+       
        methods: {
-           deleteEvent () {
-               this.$emit(EVENT_DELETED, this.event);
-               this.$emit(SHOW_DETAILS_EVENT_MODAL, false);
-           },
-           cancel () {
-               this.$emit(SHOW_DETAILS_EVENT_MODAL, false)
-           },
-           clickBackdrop () {
-               this.cancel();
-           }
+            deleteEvent () {
+                this.$emit(EVENT_DELETED, this.event);
+                this.closeModal();
+            },
+
+            cancel () {
+                this.closeModal();
+            },
+
+            clickBackdrop () {
+                this.cancel();
+            },
+
+            closeModal() {
+                 this.$emit(SHOW_DETAILS_EVENT_MODAL, false)
+            }
        }
     };
 </script>

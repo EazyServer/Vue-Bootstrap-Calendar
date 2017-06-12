@@ -16,14 +16,10 @@
     import {WEEK_SELECTED, EVENT_ADDED, EVENT_DELETED} from '../actions';
 
     export default {
-        data () {
-            return {
-                showWeekNumberFlag: false,
-            }
-        },
         components: {
             'Day': require('./Day.vue'),
         },
+
         props:{
             week: {
                 type: Array
@@ -35,6 +31,13 @@
                 type: Boolean,
             },
         },
+
+        data () {
+            return {
+                showWeekNumberFlag: false,
+            }
+        },
+
         created(){
             let me = this;
             this.$root.$on(WEEK_SELECTED, function (payload) {
@@ -43,17 +46,18 @@
                 }
             });
         },
-        computed: {
-        },
+
         methods : {
             showWeekNumber() {
                 let me = this;
                 me.showWeekNumberFlag = true;
                 this.$root.$emit(WEEK_SELECTED, {weekDate:me.week[0].date});
             },
+            
             eventAdded(event) {
                 this.$emit(EVENT_ADDED, event);
             },
+            
             eventDeleted(event) {
                 this.$emit(EVENT_DELETED, event);
             }

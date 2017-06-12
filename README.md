@@ -41,8 +41,8 @@ If you want to restrict access to the Calendar (currently includes adding and de
 
 ### Props:
 #### first-day
-Type: `Number | String`
-Default: `0` (equals Sunday)
+Type: `Number | String`<br>
+Default: `0` (equals Sunday)<br>
 
 This Prop describes the start of the Week, the value can be inbetween `0` and `6`, where `0` equals Sunday and `6` equals Saturday.
 
@@ -50,11 +50,11 @@ This Prop describes the start of the Week, the value can be inbetween `0` and `6
 Type: `Array`
 Default: `[]`
 
-This Prop defines an Array of Objects which describe your Events.
-Every object needs the following attributes:
-`title` (Representation of the Event on Days)
-`description` (Description of the Event which is display when clicked on an Event)
-`color` (Color for the Event on Days)
+This Prop defines an Array of Objects which describe your Events.<br>
+Every object needs the following attributes:<br>
+`title` (Representation of the Event on Days)<br>
+`description` (Description of the Event which is display when clicked on an Event)<br>
+`color` (Color for the Event on Days)<br>
 `date` (Date on which the Event should be displayed)
 
 #### canAddEvent
@@ -71,13 +71,13 @@ Can be used to restrict access to Calendar features.
 
 ### Events
 #### eventAdded
-Called when an Event is added to the Calendar.
+Called when an Event is added to the Calendar.<br>
 The Callback gets the created Event as Parameter:
 
 `eventAdded(event) { this.events.push(event); } `
 
 #### eventDeleted
-Called when an Event is deleted from the Calendar.
+Called when an Event is deleted from the Calendar.<br>
 The Callback gets the deleted Event as Parameter:
 
 `eventDeleted(event) { this.events.splice(this.events.indexOf(event), 1); }`

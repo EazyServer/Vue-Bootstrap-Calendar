@@ -39,35 +39,41 @@
     import {CHANGE_MONTH} from '../actions';
 
     export default {
-        data (){
-            return {
-                localeSelect:'en'
-            }
-        },
         props : {
             currentMonth : {},
             locale       : {
                 type: String
             }
         },
+
+        data (){
+            return {
+                localeSelect:'en'
+            }
+        },
+
         computed: {
             title () {
                 if (!this.currentMonth) return;
                 return this.currentMonth.locale(this.locale).format('MMMM YYYY')
             }
         },
+
         methods : {
             goPrev () {
                 let payload = moment(this.currentMonth).subtract(1, 'months').startOf('month');
                 this.$root.$emit(CHANGE_MONTH, payload);
             },
+
             goNext () {
                 let payload = moment(this.currentMonth).add(1, 'months').startOf('month');
                 this.$root.$emit(CHANGE_MONTH, payload);
             },
+            
             goToday () {
                 this.$root.$emit(CHANGE_MONTH, moment());
             },
+            
             setLocale () {
                 if(i18n) {
                     i18n.locale = this.localeSelect;

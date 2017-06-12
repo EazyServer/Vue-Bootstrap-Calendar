@@ -10,26 +10,32 @@
 
 <script>
     import {EVENT_DELETED} from '../actions';
+    
     export default {
         components: {
             'EventDetails': require('./EventDetails.vue'),
         },
+
         props: {
             event: {
                 type: Object
             },
+
             isDaySelected: {
                 type: Boolean
             },
+            
             canDeleteEvent: {
                 type: Boolean,
             }
         },
+
         data() {
             return {
                 displayEventDetails:  false,
             }
         },
+
         methods: {
             showEventDetails() {
                 if(this.isDaySelected){

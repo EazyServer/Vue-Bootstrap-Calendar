@@ -69,7 +69,6 @@
     import {EVENT_ADDED, SHOW_ADD_EVENT_FORM} from '../actions';
 
     export default {
-        
        props: {
            day: {
                type: Object,
@@ -79,6 +78,7 @@
                default: false
            },
        },
+       
        data () {
            return {
                eventTitle: "",
@@ -87,10 +87,10 @@
                colors: []
            };
        },
+
        created () {
-            if (this.show) {
+            if (this.show) 
                 document.body.className += ' modal-open';
-            }
 
             if(this.$i18n) {
                 this.colors.push(
@@ -113,9 +113,11 @@
                 )
             }
        },
+
        beforeDestroy () {
            document.body.className = document.body.className.replace(/\s?modal-open/, '');
        },
+
        watch: {
            show (value) {
                if (value) {
@@ -123,6 +125,7 @@
                }
            }
        },
+
        methods: {
            saveEvent () {
                this.$emit(EVENT_ADDED, {
@@ -136,11 +139,13 @@
                this.eventDesc = "";
                this.$emit(SHOW_ADD_EVENT_FORM, false);
            },
+
            cancel () {
                this.eventTitle = "";
                this.eventDesc = "";
                this.$emit(SHOW_ADD_EVENT_FORM, false)
            },
+
            clickBackdrop () {
                this.cancel();
            }
