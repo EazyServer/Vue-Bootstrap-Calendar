@@ -30,7 +30,9 @@
                                           :key="week"
                                           :week="week"
                                           :canAddEvent="canAddEvent"
-                                          :canDeleteEvent="canDeleteEvent">
+                                          :canDeleteEvent="canDeleteEvent"
+                                          @eventAdded="eventAdded"
+                                          @eventDeleted="eventDeleted">
                                     </Week>
                                 </div>
                             </div>
@@ -86,14 +88,6 @@
             this.$root.$on(CHANGE_MONTH, function (payload) {_t
                 me.currentMonth = payload;
             });      
-
-            this.$root.$on(EVENT_ADDED, function(eventData) {
-                me.$emit('eventAdded', eventData);
-            });  
-
-            this.$root.$on(EVENT_DELETED, function (eventData) {
-                me.$emit('eventDeleted', eventData);
-            });
         },
         mounted () {
             this.loading = false;
@@ -138,14 +132,14 @@
         methods: {
             getEvents (date) {
                 return this.events.filter(event => {
-                    return date.isSame(event.date, 'day')?event:null;
+                    return date.isSame(event.date, 'day') ? event : null;
                 });
             },
 
             getMonthViewStartDate (date, firstDay) {
                 firstDay = parseInt(firstDay);
 
-                let start = moment(date).locale(this.appLocale);
+                let start = moment(date).locale(this.appLocale);    
                 let startOfMonth = moment(start.startOf('month'));
 
                 start.subtract(startOfMonth.day(), 'days');
@@ -157,6 +151,14 @@
                 start.add(firstDay, 'days');
 
                 return start;
+            },
+
+            eventAdded(event) {
+                this.$emit(EVENT_ADDED, event);
+            },
+
+            eventDeleted(event) {
+                this.$emit(EVENT_DELETED, event);
             }
         },
         filters: {

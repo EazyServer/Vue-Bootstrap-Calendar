@@ -7,11 +7,13 @@
              :key="day.date"
              :canAddEvent="canAddEvent"
              :canDeleteEvent="canDeleteEvent"
+             @eventAdded="eventAdded"
+             @eventDeleted="eventDeleted"
         ></Day>
     </div>
 </template>
 <script>
-    import {WEEK_SELECTED} from '../actions';
+    import {WEEK_SELECTED, EVENT_ADDED, EVENT_DELETED} from '../actions';
 
     export default {
         data () {
@@ -39,9 +41,7 @@
                 if(payload.weekDate != me.week[0].date) {
                     me.showWeekNumberFlag = false;
                 }
-            })
-        },
-        mounted() {
+            });
         },
         computed: {
         },
@@ -50,6 +50,12 @@
                 let me = this;
                 me.showWeekNumberFlag = true;
                 this.$root.$emit(WEEK_SELECTED, {weekDate:me.week[0].date});
+            },
+            eventAdded(event) {
+                this.$emit(EVENT_ADDED, event);
+            },
+            eventDeleted(event) {
+                this.$emit(EVENT_DELETED, event);
             }
         }
     }

@@ -73,7 +73,7 @@
        },
        methods: {
            deleteEvent () {
-               this.$root.$emit(EVENT_DELETED, this.event);
+               this.$emit(EVENT_DELETED, this.event);
                this.$emit(SHOW_DETAILS_EVENT_MODAL, false);
            },
            cancel () {

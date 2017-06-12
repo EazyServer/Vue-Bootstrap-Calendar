@@ -5,6 +5,7 @@
                 :all-events="events"
                 :canAddEvent="true"
                 :canDeleteEvent="true"
+                :dateLocale="'ar'"
                 @eventAdded="eventAdded"
                 @eventDeleted="eventDeleted"
         ></calendar>

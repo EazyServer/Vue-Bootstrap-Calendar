@@ -15,20 +15,21 @@
         </div>
         <div class="event-box">
             <EventCard
+                    v-for="event in day.events"
                     :event="event"
                     :key="event.id"
                     :day-date="day.date"
                     :is-day-selected="isDaySelected"
                     :canDeleteEvent="canDeleteEvent"
-                    v-for="event in day.events">
+                    @eventDeleted="eventDeleted">
             </EventCard>
         </div>
-        <EventModal :show.sync="showAddEvent" :day="day"></EventModal>
+        <EventModal :show.sync="showAddEvent" :day="day" @eventAdded="eventAdded"></EventModal>
     </div>
 </template>
 <script>
     import moment from 'moment';
-    import {DAY_SELECTED, CHANGE_MONTH} from '../actions';
+    import {DAY_SELECTED, CHANGE_MONTH, EVENT_ADDED, EVENT_DELETED} from '../actions';
     export default {
         data () {
             return {
@@ -78,6 +79,12 @@
             showAddEventForm(){
                 this.showAddEvent = true;
             },
+            eventAdded(event) {
+                this.$emit(EVENT_ADDED, event);
+            },
+            eventDeleted(event) {
+                this.$emit(EVENT_DELETED, event);
+            }
         }
     }
 </script>

@@ -125,7 +125,7 @@
        },
        methods: {
            saveEvent () {
-               this.$root.$emit(EVENT_ADDED, {
+               this.$emit(EVENT_ADDED, {
                    title: this.eventTitle,
                    color: this.eventColor,
                    description: this.eventDesc,

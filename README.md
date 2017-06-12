@@ -39,6 +39,49 @@ Events array can be passed on via ``all-events`` binding.
 
 If you want to restrict access to the Calendar (currently includes adding and deleting Events), you may pass the Props ```canAddEvent``` and ```canDeleteEvent``` to the Calendar. Both Props default to ```true```, so it won't bother you if you don't need them.
 
+### Props:
+#### first-day
+Type: `Number | String`
+Default: `0` (equals Sunday)
+
+This Prop describes the start of the Week, the value can be inbetween `0` and `6`, where `0` equals Sunday and `6` equals Saturday.
+
+#### all-events
+Type: `Array`
+Default: `[]`
+
+This Prop defines an Array of Objects which describe your Events.
+Every object needs the following attributes:
+`title` (Representation of the Event on Days)
+`description` (Description of the Event which is display when clicked on an Event)
+`color` (Color for the Event on Days)
+`date` (Date on which the Event should be displayed)
+
+#### canAddEvent
+Type: `Boolean`
+Default: `true`
+
+Can be used to restrict access to Calendar features.
+
+#### canDeleteEvent
+Type: `Boolean`
+Default: `true`
+
+Can be used to restrict access to Calendar features.
+
+### Events
+#### eventAdded
+Called when an Event is added to the Calendar.
+The Callback gets the created Event as Parameter:
+
+`eventAdded(event) { this.events.push(event); } `
+
+#### eventDeleted
+Called when an Event is deleted from the Calendar.
+The Callback gets the deleted Event as Parameter:
+
+`eventDeleted(event) { this.events.splice(this.events.indexOf(event), 1); }`
+
 ### Example:
 
 In your ``App.vue``:
@@ -84,6 +127,7 @@ In your ``App.vue``:
                     {
                         id:1,
                         title:'Event 1',
+                        description: 'Dummy Desc',
                         color: 'panel-danger',
                         date: new Date()
                     },

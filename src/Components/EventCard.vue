@@ -4,11 +4,12 @@
             <div class="card-header event-title" :class="{'clickable-event':isDaySelected}">{{event.title}}</div>
         </div>
 
-        <EventDetails :show.sync="displayEventDetails" :event="event" :canDeleteEvent="canDeleteEvent"></EventDetails>
+        <EventDetails :show.sync="displayEventDetails" :event="event" :canDeleteEvent="canDeleteEvent" @eventDeleted="eventDeleted"></EventDetails>
     </div>
 </template>
 
 <script>
+    import {EVENT_DELETED} from '../actions';
     export default {
         components: {
             'EventDetails': require('./EventDetails.vue'),
@@ -34,8 +35,12 @@
                 if(this.isDaySelected){
                     this.displayEventDetails = true;
                 }
+            },
+
+            eventDeleted(event) {
+                this.$emit(EVENT_DELETED, event);
             }
-        }
+        },
     }
 </script>
 <style>
