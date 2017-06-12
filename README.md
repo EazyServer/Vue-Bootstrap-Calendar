@@ -52,6 +52,7 @@ Default: `[]`
 
 This Prop defines an Array of Objects which describe your Events.<br>
 Every object needs the following attributes:<br>
+
 `title` (Representation of the Event on Days)<br>
 `description` (Description of the Event which is display when clicked on an Event)<br>
 `color` (Color for the Event on Days)<br>
@@ -128,7 +129,7 @@ In your ``App.vue``:
                         id:1,
                         title:'Event 1',
                         description: 'Dummy Desc',
-                        color: 'panel-danger',
+                        color: 'card-danger card-inverse',
                         date: new Date()
                     },
                     ...
