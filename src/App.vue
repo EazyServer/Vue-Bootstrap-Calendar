@@ -6,6 +6,7 @@
                 :canAddEvent="true"
                 :canDeleteEvent="true"
                 :dateLocale="'ar'"
+                :displayWeekNumber="false"
                 @eventAdded="eventAdded"
                 @eventDeleted="eventDeleted"
         ></calendar>

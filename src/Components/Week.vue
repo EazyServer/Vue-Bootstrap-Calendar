@@ -24,9 +24,16 @@
             week: {
                 type: Array
             },
+
+            displayWeekNumber: {
+                type: Boolean,
+                default: true,
+            },
+
             canAddEvent: {
                 type: Boolean,
             },
+            
             canDeleteEvent: {
                 type: Boolean,
             },
@@ -49,9 +56,10 @@
 
         methods : {
             showWeekNumber() {
-                let me = this;
-                me.showWeekNumberFlag = true;
-                this.$root.$emit(WEEK_SELECTED, {weekDate:me.week[0].date});
+                if(this.displayWeekNumber) {
+                    this.showWeekNumberFlag = true;
+                }
+                this.$root.$emit(WEEK_SELECTED, {weekDate:this.week[0].date});
             },
             
             eventAdded(event) {

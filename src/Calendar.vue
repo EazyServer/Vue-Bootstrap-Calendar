@@ -31,6 +31,7 @@
                                           :week="week"
                                           :canAddEvent="canAddEvent"
                                           :canDeleteEvent="canDeleteEvent"
+                                          :displayWeekNumber="displayWeekNumber"
                                           @eventAdded="eventAdded"
                                           @eventDeleted="eventDeleted">
                                     </Week>
@@ -67,6 +68,11 @@
                     return res >= 0 && res <= 6;
                 },
                 default: 0
+            },
+
+            displayWeekNumber: {
+                type: Boolean,
+                default: true,
             },
 
             canAddEvent: {

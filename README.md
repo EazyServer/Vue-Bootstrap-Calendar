@@ -47,8 +47,8 @@ Default: `0` (equals Sunday)<br>
 This Prop describes the start of the Week, the value can be inbetween `0` and `6`, where `0` equals Sunday and `6` equals Saturday.
 
 #### all-events
-Type: `Array`
-Default: `[]`
+Type: `Array`<br>
+Default: `[]`<br>
 
 This Prop defines an Array of Objects which describe your Events.<br>
 Every object needs the following attributes:<br>
@@ -58,15 +58,21 @@ Every object needs the following attributes:<br>
 `color` (Color for the Event on Days)<br>
 `date` (Date on which the Event should be displayed)
 
+### displayWeekNumber
+Type: `Boolean`<br>
+Default: `true`<br>
+
+Wether or not to display the week number Flag when a week/day is selected.
+
 #### canAddEvent
-Type: `Boolean`
-Default: `true`
+Type: `Boolean`<br>
+Default: `true`<br>
 
 Can be used to restrict access to Calendar features.
 
 #### canDeleteEvent
-Type: `Boolean`
-Default: `true`
+Type: `Boolean`<br>
+Default: `true`<br>
 
 Can be used to restrict access to Calendar features.
 
