@@ -1,7 +1,7 @@
 {
   "name": "vue-bootstrap4-calendar",
   "description": "Uses the magical power of VueJS v2 and beauty of Twitter Bootstraps 4 to create a powerful Responsive Calendar App.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "max <max.eckel@yahoo.de>",
   "homepage": "https://github.com/ExCluSiv3/Vue-Bootstrap-Calendar",
   "repository": {
