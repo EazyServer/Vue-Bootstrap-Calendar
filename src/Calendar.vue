@@ -84,7 +84,7 @@
 
 				for ( let weekIndex=0; weekIndex < 5; weekIndex++) {
 
-					let week = [];
+					week = [];
 					for (let dayIndex=0; dayIndex < 7; dayIndex++) {
 
 						week.push(this.getDayObject(monthMomentObject, dayIndex));
@@ -99,7 +99,7 @@
 
 
 				if(diff > 0 && diff < 3){
-					let week = [];
+					week = [];
 					for (let dayIndex=0; dayIndex < 7; dayIndex++) {
 
 						week.push(this.getDayObject(monthMomentObject, dayIndex));
@@ -153,17 +153,6 @@
 					events: this.getEvents(monthMomentObject)
 				};
 			},
-
-			getWeekObject(monthMomentObject){
-				let week = [];
-				for (let dayIndex=0; dayIndex < 7; dayIndex++) {
-
-					week.push(this.getDayObject(monthMomentObject, dayIndex));
-
-					monthMomentObject.add(1, 'day');
-				}
-				return week;
-			}
 		},
 		filters: {
 			weekDayName (weekday, firstDay, locale) {
