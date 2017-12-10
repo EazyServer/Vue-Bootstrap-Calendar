@@ -8,7 +8,6 @@
 </template>
 
 <script>
-    import {Calendar} from './main';
     export default {
         name: 'app',
         data() {
@@ -17,7 +16,7 @@
             }
         },
         components: {
-            Calendar
+            Calendar: require('./Calendar.vue')
         },
         mounted() {
             let me = this;

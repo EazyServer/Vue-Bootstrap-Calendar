@@ -33,7 +33,7 @@
             }
         },
         components: {
-            'EventCard' : require('./EventCard.vue'),
+            'EventCard' : require('./EventCard.vue').default?require('./EventCard.vue').default:require('./EventCard.vue'),
         },
         props:{
             day: {

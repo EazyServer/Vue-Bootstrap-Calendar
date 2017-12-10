@@ -1,2 +1,7 @@
-exports.messages = require('./locale').default;
-exports.Calendar = require('./Calendar.vue');
+var Calendar = require('./Calendar.vue').default;
+var messages = require('./locale').default;
+
+module.exports =  {
+    Calendar:Calendar,
+    messages: messages
+};
