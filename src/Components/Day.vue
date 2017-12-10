@@ -1,7 +1,7 @@
 <template>
     <div class="day-cell"
          :class="{'today' : day.isToday, 'current-month' : day.isCurrentMonth, 'weekend': day.isWeekEnd, 'selected-day':isDaySelected}"
-    @click="showDayOptions">
+        @click="showDayOptions">
         <div class="row">
             <div class="col-sm-6">
                 <div v-show="isDaySelected">
@@ -13,13 +13,13 @@
             </div>
         </div>
         <div class="event-box">
-            <EventCard
+            <event-card
                     :event="event"
                     :key="event.id"
                     :day-date="day.date"
                     :is-day-selected="isDaySelected"
                     v-for="event in day.events">
-            </EventCard>
+            </event-card>
         </div>
     </div>
 </template>
