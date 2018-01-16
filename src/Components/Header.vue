@@ -7,6 +7,7 @@
                     <option value="ar">AR</option>
                     <option value="en">EN</option>
                     <option value="de">DE</option>
+                    <option value="pt-BR">PT-BR</option>
                 </select>
             </div>
         </div>
