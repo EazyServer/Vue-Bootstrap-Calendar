@@ -33,8 +33,8 @@
 
     export default {
         components: {
-            'EventCard' : require('./EventCard.vue'),
-            'EventModal': require('./EventModal.vue'),
+            'EventCard' : require('./EventCard.vue').default ? require('./EventCard.vue').default : require('./EventCard.vue'),
+            'EventModal': require('./EventModal.vue').default ? require('./EventModal.vue').default : require('./EventModal.vue'),
         },
 
         props:{

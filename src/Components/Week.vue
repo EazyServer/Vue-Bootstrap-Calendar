@@ -17,7 +17,7 @@
 
     export default {
         components: {
-            'Day': require('./Day.vue'),
+            'Day': require('./Day.vue').default ? require('./Day.vue').default : require('./Day.vue'),
         },
 
         props:{

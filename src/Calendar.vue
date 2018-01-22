@@ -50,8 +50,8 @@
 
     export default {
         components: {
-            'CalendarHeader': require('./Components/Header.vue'),
-            'Week': require('./Components/Week.vue'),
+            'CalendarHeader': require('./Components/Header.vue').default ? require('./Components/Header.vue').default : require('./Components/Header.vue'),
+            'Week': require('./Components/Week.vue').default ? require('./Components/Week.vue').default : require('./Components/Week.vue')
         },
         props: {
             allEvents: {

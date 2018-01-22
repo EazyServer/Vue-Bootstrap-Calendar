@@ -23,7 +23,7 @@
             }
         },
         components: {
-            Calendar
+            Calendar: require('./Calendar.vue')
         },
         methods: {
             eventAdded(event) {
