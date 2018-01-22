@@ -1,0 +1,23 @@
+export default {
+	"generic": {
+		'loading': "Téléchargement",
+		'previous': "Précédent",
+		'next': "Suivant",
+		'calender': "Calendrier",
+		'today': "Aujourd’hui",
+		'week': "Semaine",
+		'add_event': "Ajouter l’événement",
+		'delete_event': "Supprimer l’événement",
+		'select_language': "Selectionner la langue",
+		'event_title': "Titre de l’événement",
+		'event_color': "Couleur de l’événement",
+		'event_description': "Description de l’événement",
+		'cancel': "Annuler",
+		'color_grey': "Gris",
+		'color_blue': "Bleu",
+		'color_lightblue': "Bleu pâle",
+		'color_green': "Vert",
+		'color_orange': "Orange",
+		'color_red': "Rouge",
+	},
+}
