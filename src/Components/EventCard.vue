@@ -13,7 +13,7 @@
     
     export default {
         components: {
-            'EventDetails': require('./EventDetails.vue'),
+            'EventDetails': require('./EventDetails.vue').default ? require('./EventDetails.vue').default : require('./EventDetails.vue'),
         },
 
         props: {

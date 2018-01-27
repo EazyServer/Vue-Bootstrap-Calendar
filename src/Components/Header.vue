@@ -4,9 +4,10 @@
             <div class="form-group" v-if="$i18n">
                 <label for="locale">{{ $t('generic.select_language')}}:</label>
                 <select class="form-control language-select" v-model="localeSelect" @change="setLocale" id="locale">
-                    <option value="ar">AR</option>
                     <option value="en">EN</option>
+                    <option value="fr">FR</option>
                     <option value="de">DE</option>
+                    <option value="ar">AR</option>
                 </select>
             </div>
         </div>

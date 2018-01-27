@@ -21,13 +21,13 @@
 
                             <div class="full-calendar-body">
                                 <div class="weeks">
-                                    <strong class="week" v-for="dayIndex in 7">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
+                                    <strong class="week" v-for="(dayIndex, index) in 7" :key="index">{{ (dayIndex - 1) | weekDayName(firstDay, appLocale) }}</strong>
                                 </div>
 
                                 <div class="dates" ref="dates">
-                                    <Week v-for="week in Weeks"
+                                    <Week v-for="(week, index) in Weeks"
                                           :firstDay="firstDay"
-                                          :key="week"
+                                          :key="week + index"
                                           :week="week"
                                           :canAddEvent="canAddEvent"
                                           :canDeleteEvent="canDeleteEvent"
@@ -50,8 +50,8 @@
 
     export default {
         components: {
-            'CalendarHeader': require('./Components/Header.vue'),
-            'Week': require('./Components/Week.vue'),
+            'CalendarHeader': require('./Components/Header.vue').default ? require('./Components/Header.vue').default : require('./Components/Header.vue'),
+            'Week': require('./Components/Week.vue').default ? require('./Components/Week.vue').default : require('./Components/Week.vue')
         },
         props: {
             allEvents: {

@@ -5,7 +5,7 @@
                 :all-events="events"
                 :canAddEvent="true"
                 :canDeleteEvent="true"
-                :dateLocale="'ar'"
+                :dateLocale="'en'"
                 :displayWeekNumber="false"
                 @eventAdded="eventAdded"
                 @eventDeleted="eventDeleted"
@@ -23,7 +23,7 @@
             }
         },
         components: {
-            Calendar
+            Calendar: require('./Calendar.vue')
         },
         methods: {
             eventAdded(event) {

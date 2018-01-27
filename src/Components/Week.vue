@@ -2,9 +2,9 @@
     <div class="week-row" @click="showWeekNumber">
         <div class="week-number" v-if="showWeekNumberFlag && $i18n">{{ $t('generic.week')}} {{week[0].date.format('w')}}</div>
         <div class="week-number" v-else-if="showWeekNumberFlag">Week {{week[0].date.format('w')}}</div>
-        <Day v-for="day in week"
+        <Day v-for="(day, index) in week"
              :day="day"
-             :key="day.date"
+             :key="day.date + index"
              :canAddEvent="canAddEvent"
              :canDeleteEvent="canDeleteEvent"
              @eventAdded="eventAdded"
@@ -17,7 +17,7 @@
 
     export default {
         components: {
-            'Day': require('./Day.vue'),
+            'Day': require('./Day.vue').default ? require('./Day.vue').default : require('./Day.vue'),
         },
 
         props:{

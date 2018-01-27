@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["latest", {
+    ["ENV", {
       "es2015": { "modules": false }
     }]
   ]
