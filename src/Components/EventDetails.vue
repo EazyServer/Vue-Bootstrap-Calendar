@@ -13,7 +13,8 @@
                         </div>
 
                         <div class="modal-body">
-                            <p>{{event.description}}</p>
+                            <p v-if="event.eventPage"><a :href="event.eventPage">{{event.description}}</a></p>
+                            <p v-else>{{event.description}}</p>
                         </div>
 
                         <div class="modal-footer">
