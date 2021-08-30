@@ -1,0 +1,12 @@
+export default {
+	"generic": {
+		'loading': "Cargando",
+		'previous': "Anterior",
+		'next': "Próximo",
+		'calender': "Calendario",
+		'today': "Hoy",
+		'week': "Semana",
+		'add_event': "Añadir Evento",
+		'select_language': "Seleccionar Idioma",
+	},
+}
